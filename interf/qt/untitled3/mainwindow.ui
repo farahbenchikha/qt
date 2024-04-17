@@ -2351,9 +2351,119 @@ font: 75 12pt &quot;MS Shell Dlg 2&quot;;</string>
       <property name="currentIndex">
        <number>0</number>
       </property>
+      <widget class="QWidget" name="tab_12">
+       <attribute name="title">
+        <string>Liste des enregistrements </string>
+       </attribute>
+       <widget class="QLineEdit" name="lineEdit_22">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>-20</y>
+          <width>1051</width>
+          <height>571</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(63, 63, 63);</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_141">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>541</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 25pt &quot;MS Shell Dlg 2&quot;;
+color:rgb(255, 255, 255)</string>
+        </property>
+        <property name="text">
+         <string>Liste des enregistrements </string>
+        </property>
+       </widget>
+       <widget class="QTableView" name="tableView_enr">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>130</y>
+          <width>861</width>
+          <height>261</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_idrecheng">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>90</y>
+          <width>201</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="placeholderText">
+         <string>Recherche par nom</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_exportpdf">
+        <property name="geometry">
+         <rect>
+          <x>780</x>
+          <y>410</y>
+          <width>111</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Export Pdf </string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_statistiqueenr">
+        <property name="geometry">
+         <rect>
+          <x>660</x>
+          <y>410</y>
+          <width>111</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Statistiques </string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_supenr">
+        <property name="geometry">
+         <rect>
+          <x>790</x>
+          <y>80</y>
+          <width>93</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Supprimer</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_modifenr">
+        <property name="geometry">
+         <rect>
+          <x>680</x>
+          <y>80</y>
+          <width>93</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Modifier</string>
+        </property>
+       </widget>
+      </widget>
       <widget class="QWidget" name="tab_11">
        <attribute name="title">
-        <string>Création d'un enregistrement</string>
+        <string>Création </string>
        </attribute>
        <widget class="QLabel" name="label_79">
         <property name="geometry">
@@ -2575,289 +2685,6 @@ color:rgb(255, 255, 255)</string>
         </property>
         <property name="text">
          <string>Chemin relatif :</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="tab_12">
-       <attribute name="title">
-        <string>Liste des enregistrements </string>
-       </attribute>
-       <widget class="QLineEdit" name="lineEdit_22">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>-30</y>
-          <width>1051</width>
-          <height>571</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: rgb(63, 63, 63);</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pushButton_85">
-        <property name="geometry">
-         <rect>
-          <x>30</x>
-          <y>20</y>
-          <width>93</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Traduire </string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_141">
-        <property name="geometry">
-         <rect>
-          <x>30</x>
-          <y>40</y>
-          <width>241</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
-text-decoration: underline;
-color:rgb(255, 255, 255)</string>
-        </property>
-        <property name="text">
-         <string>Liste des enregistrements :</string>
-        </property>
-       </widget>
-       <widget class="QTableView" name="tableView_enr">
-        <property name="geometry">
-         <rect>
-          <x>30</x>
-          <y>80</y>
-          <width>721</width>
-          <height>311</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pushButton_suppenr">
-        <property name="geometry">
-         <rect>
-          <x>210</x>
-          <y>420</y>
-          <width>121</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Supprimer</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="lineEdit_suppenr">
-        <property name="geometry">
-         <rect>
-          <x>40</x>
-          <y>420</y>
-          <width>161</width>
-          <height>22</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color:rgb(161, 161, 161)</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_175">
-        <property name="geometry">
-         <rect>
-          <x>30</x>
-          <y>400</y>
-          <width>301</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color:rgb(255, 255, 255)</string>
-        </property>
-        <property name="text">
-         <string>Donner l'identifiant de l'enregistrement à supprimer </string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pushButton_rechEnreg">
-        <property name="geometry">
-         <rect>
-          <x>510</x>
-          <y>20</y>
-          <width>141</width>
-          <height>28</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Chercher le nom</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_178">
-        <property name="geometry">
-         <rect>
-          <x>140</x>
-          <y>20</y>
-          <width>301</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color:rgb(255, 255, 255)</string>
-        </property>
-        <property name="text">
-         <string>Donner le nom de l'enregistrement à chercher</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="lineEdit_idrecheng">
-        <property name="geometry">
-         <rect>
-          <x>440</x>
-          <y>20</y>
-          <width>61</width>
-          <height>22</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pushButton_tricroisenreg">
-        <property name="geometry">
-         <rect>
-          <x>780</x>
-          <y>60</y>
-          <width>111</width>
-          <height>28</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Tri Croissant</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pushButton_tridecenreg">
-        <property name="geometry">
-         <rect>
-          <x>780</x>
-          <y>100</y>
-          <width>111</width>
-          <height>28</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Tri Decroissant</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pushButton_filtrerenregtype">
-        <property name="geometry">
-         <rect>
-          <x>780</x>
-          <y>200</y>
-          <width>111</width>
-          <height>28</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Filtrer Par Type </string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="lineEdit_filterengtype">
-        <property name="geometry">
-         <rect>
-          <x>780</x>
-          <y>170</y>
-          <width>113</width>
-          <height>22</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="lineEdit_filterenregqualite">
-        <property name="geometry">
-         <rect>
-          <x>780</x>
-          <y>260</y>
-          <width>113</width>
-          <height>22</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pushButton_filtrerenregqualite">
-        <property name="geometry">
-         <rect>
-          <x>780</x>
-          <y>290</y>
-          <width>111</width>
-          <height>28</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>filtrerParQualite</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pushButton_exportpdf">
-        <property name="geometry">
-         <rect>
-          <x>780</x>
-          <y>330</y>
-          <width>111</width>
-          <height>28</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Export Pdf </string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pushButton_statistiqueenr">
-        <property name="geometry">
-         <rect>
-          <x>780</x>
-          <y>370</y>
-          <width>111</width>
-          <height>28</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Statistiques </string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_179">
-        <property name="geometry">
-         <rect>
-          <x>750</x>
-          <y>230</y>
-          <width>161</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color:rgb(255, 255, 255)</string>
-        </property>
-        <property name="text">
-         <string>Donner la qualite de filtrage </string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_180">
-        <property name="geometry">
-         <rect>
-          <x>750</x>
-          <y>140</y>
-          <width>161</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color:rgb(255, 255, 255)</string>
-        </property>
-        <property name="text">
-         <string>Donner le type de filtrage </string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pushButton_afficher_enr">
-        <property name="geometry">
-         <rect>
-          <x>620</x>
-          <y>420</y>
-          <width>93</width>
-          <height>28</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>PushButton</string>
         </property>
        </widget>
       </widget>
@@ -3119,161 +2946,6 @@ color:rgb(255, 255, 255)</string>
         </property>
         <property name="text">
          <string>Modifier l'enregistrement :</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="tab_23">
-       <attribute name="title">
-        <string>Enregistrement</string>
-       </attribute>
-       <widget class="QGroupBox" name="groupBox_Video">
-        <property name="geometry">
-         <rect>
-          <x>5</x>
-          <y>42</y>
-          <width>661</width>
-          <height>231</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QGroupBox
-{
-border:1px solid black;
-}</string>
-        </property>
-        <property name="title">
-         <string>groupBox_Video</string>
-        </property>
-       </widget>
-       <widget class="QSlider" name="horizontalSlider_slidDureEnr">
-        <property name="geometry">
-         <rect>
-          <x>90</x>
-          <y>290</y>
-          <width>641</width>
-          <height>22</height>
-         </rect>
-        </property>
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_tmpdebutenr">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>290</y>
-          <width>81</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>10</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>00:00:00</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_tempstotalenr">
-        <property name="geometry">
-         <rect>
-          <x>740</x>
-          <y>290</y>
-          <width>81</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>10</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>00:00:00</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pushButton_volumeEnr">
-        <property name="geometry">
-         <rect>
-          <x>550</x>
-          <y>320</y>
-          <width>51</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pushButton_playpauseenr">
-        <property name="geometry">
-         <rect>
-          <x>70</x>
-          <y>320</y>
-          <width>51</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pushButton_seek_backEnr">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>320</y>
-          <width>51</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pushButton_stopEnr">
-        <property name="geometry">
-         <rect>
-          <x>140</x>
-          <y>320</y>
-          <width>51</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-       <widget class="QSlider" name="horizontalSlider_volumeenr">
-        <property name="geometry">
-         <rect>
-          <x>610</x>
-          <y>340</y>
-          <width>160</width>
-          <height>22</height>
-         </rect>
-        </property>
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pushButton_seek_forwardenr">
-        <property name="geometry">
-         <rect>
-          <x>220</x>
-          <y>320</y>
-          <width>51</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string/>
         </property>
        </widget>
       </widget>

@@ -16,7 +16,6 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDateEdit>
-#include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -25,7 +24,6 @@
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QScrollBar>
-#include <QtWidgets/QSlider>
 #include <QtWidgets/QSpinBox>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
@@ -180,6 +178,15 @@ public:
     QPushButton *pushButton_73;
     QWidget *tab_4;
     QTabWidget *tabWidget_enrVideo;
+    QWidget *tab_12;
+    QLineEdit *lineEdit_22;
+    QLabel *label_141;
+    QTableView *tableView_enr;
+    QLineEdit *lineEdit_idrecheng;
+    QPushButton *pushButton_exportpdf;
+    QPushButton *pushButton_statistiqueenr;
+    QPushButton *pushButton_supenr;
+    QPushButton *pushButton_modifenr;
     QWidget *tab_11;
     QLabel *label_79;
     QLabel *label_80;
@@ -196,28 +203,6 @@ public:
     QLineEdit *lineEdit_id_em_enr;
     QLineEdit *lineEdit_cheminEnr;
     QLabel *label_81;
-    QWidget *tab_12;
-    QLineEdit *lineEdit_22;
-    QPushButton *pushButton_85;
-    QLabel *label_141;
-    QTableView *tableView_enr;
-    QPushButton *pushButton_suppenr;
-    QLineEdit *lineEdit_suppenr;
-    QLabel *label_175;
-    QPushButton *pushButton_rechEnreg;
-    QLabel *label_178;
-    QLineEdit *lineEdit_idrecheng;
-    QPushButton *pushButton_tricroisenreg;
-    QPushButton *pushButton_tridecenreg;
-    QPushButton *pushButton_filtrerenregtype;
-    QLineEdit *lineEdit_filterengtype;
-    QLineEdit *lineEdit_filterenregqualite;
-    QPushButton *pushButton_filtrerenregqualite;
-    QPushButton *pushButton_exportpdf;
-    QPushButton *pushButton_statistiqueenr;
-    QLabel *label_179;
-    QLabel *label_180;
-    QPushButton *pushButton_afficher_enr;
     QWidget *tab_24;
     QLabel *label_126;
     QLabel *label_128;
@@ -236,17 +221,6 @@ public:
     QLabel *label_177;
     QLineEdit *lineEdit_modifid_enr;
     QLabel *label_142;
-    QWidget *tab_23;
-    QGroupBox *groupBox_Video;
-    QSlider *horizontalSlider_slidDureEnr;
-    QLabel *label_tmpdebutenr;
-    QLabel *label_tempstotalenr;
-    QPushButton *pushButton_volumeEnr;
-    QPushButton *pushButton_playpauseenr;
-    QPushButton *pushButton_seek_backEnr;
-    QPushButton *pushButton_stopEnr;
-    QSlider *horizontalSlider_volumeenr;
-    QPushButton *pushButton_seek_forwardenr;
     QWidget *tab_2;
     QTabWidget *tabWidget_7;
     QWidget *tab_17;
@@ -1205,6 +1179,36 @@ public:
         tabWidget_enrVideo = new QTabWidget(tab_4);
         tabWidget_enrVideo->setObjectName(QStringLiteral("tabWidget_enrVideo"));
         tabWidget_enrVideo->setGeometry(QRect(30, 0, 1051, 641));
+        tab_12 = new QWidget();
+        tab_12->setObjectName(QStringLiteral("tab_12"));
+        lineEdit_22 = new QLineEdit(tab_12);
+        lineEdit_22->setObjectName(QStringLiteral("lineEdit_22"));
+        lineEdit_22->setGeometry(QRect(10, -20, 1051, 571));
+        lineEdit_22->setStyleSheet(QStringLiteral("background-color: rgb(63, 63, 63);"));
+        label_141 = new QLabel(tab_12);
+        label_141->setObjectName(QStringLiteral("label_141"));
+        label_141->setGeometry(QRect(30, 20, 541, 51));
+        label_141->setStyleSheet(QLatin1String("font: 25pt \"MS Shell Dlg 2\";\n"
+"color:rgb(255, 255, 255)"));
+        tableView_enr = new QTableView(tab_12);
+        tableView_enr->setObjectName(QStringLiteral("tableView_enr"));
+        tableView_enr->setGeometry(QRect(30, 130, 861, 261));
+        lineEdit_idrecheng = new QLineEdit(tab_12);
+        lineEdit_idrecheng->setObjectName(QStringLiteral("lineEdit_idrecheng"));
+        lineEdit_idrecheng->setGeometry(QRect(30, 90, 201, 21));
+        pushButton_exportpdf = new QPushButton(tab_12);
+        pushButton_exportpdf->setObjectName(QStringLiteral("pushButton_exportpdf"));
+        pushButton_exportpdf->setGeometry(QRect(780, 410, 111, 28));
+        pushButton_statistiqueenr = new QPushButton(tab_12);
+        pushButton_statistiqueenr->setObjectName(QStringLiteral("pushButton_statistiqueenr"));
+        pushButton_statistiqueenr->setGeometry(QRect(660, 410, 111, 28));
+        pushButton_supenr = new QPushButton(tab_12);
+        pushButton_supenr->setObjectName(QStringLiteral("pushButton_supenr"));
+        pushButton_supenr->setGeometry(QRect(790, 80, 93, 28));
+        pushButton_modifenr = new QPushButton(tab_12);
+        pushButton_modifenr->setObjectName(QStringLiteral("pushButton_modifenr"));
+        pushButton_modifenr->setGeometry(QRect(680, 80, 93, 28));
+        tabWidget_enrVideo->addTab(tab_12, QString());
         tab_11 = new QWidget();
         tab_11->setObjectName(QStringLiteral("tab_11"));
         label_79 = new QLabel(tab_11);
@@ -1264,81 +1268,6 @@ public:
         label_81->setObjectName(QStringLiteral("label_81"));
         label_81->setGeometry(QRect(80, 340, 111, 16));
         tabWidget_enrVideo->addTab(tab_11, QString());
-        tab_12 = new QWidget();
-        tab_12->setObjectName(QStringLiteral("tab_12"));
-        lineEdit_22 = new QLineEdit(tab_12);
-        lineEdit_22->setObjectName(QStringLiteral("lineEdit_22"));
-        lineEdit_22->setGeometry(QRect(0, -30, 1051, 571));
-        lineEdit_22->setStyleSheet(QStringLiteral("background-color: rgb(63, 63, 63);"));
-        pushButton_85 = new QPushButton(tab_12);
-        pushButton_85->setObjectName(QStringLiteral("pushButton_85"));
-        pushButton_85->setGeometry(QRect(30, 20, 93, 21));
-        label_141 = new QLabel(tab_12);
-        label_141->setObjectName(QStringLiteral("label_141"));
-        label_141->setGeometry(QRect(30, 40, 241, 51));
-        label_141->setStyleSheet(QLatin1String("font: 10pt \"MS Shell Dlg 2\";\n"
-"text-decoration: underline;\n"
-"color:rgb(255, 255, 255)"));
-        tableView_enr = new QTableView(tab_12);
-        tableView_enr->setObjectName(QStringLiteral("tableView_enr"));
-        tableView_enr->setGeometry(QRect(30, 80, 721, 311));
-        pushButton_suppenr = new QPushButton(tab_12);
-        pushButton_suppenr->setObjectName(QStringLiteral("pushButton_suppenr"));
-        pushButton_suppenr->setGeometry(QRect(210, 420, 121, 31));
-        lineEdit_suppenr = new QLineEdit(tab_12);
-        lineEdit_suppenr->setObjectName(QStringLiteral("lineEdit_suppenr"));
-        lineEdit_suppenr->setGeometry(QRect(40, 420, 161, 22));
-        lineEdit_suppenr->setStyleSheet(QStringLiteral("color:rgb(161, 161, 161)"));
-        label_175 = new QLabel(tab_12);
-        label_175->setObjectName(QStringLiteral("label_175"));
-        label_175->setGeometry(QRect(30, 400, 301, 21));
-        label_175->setStyleSheet(QStringLiteral("color:rgb(255, 255, 255)"));
-        pushButton_rechEnreg = new QPushButton(tab_12);
-        pushButton_rechEnreg->setObjectName(QStringLiteral("pushButton_rechEnreg"));
-        pushButton_rechEnreg->setGeometry(QRect(510, 20, 141, 28));
-        label_178 = new QLabel(tab_12);
-        label_178->setObjectName(QStringLiteral("label_178"));
-        label_178->setGeometry(QRect(140, 20, 301, 21));
-        label_178->setStyleSheet(QStringLiteral("color:rgb(255, 255, 255)"));
-        lineEdit_idrecheng = new QLineEdit(tab_12);
-        lineEdit_idrecheng->setObjectName(QStringLiteral("lineEdit_idrecheng"));
-        lineEdit_idrecheng->setGeometry(QRect(440, 20, 61, 22));
-        pushButton_tricroisenreg = new QPushButton(tab_12);
-        pushButton_tricroisenreg->setObjectName(QStringLiteral("pushButton_tricroisenreg"));
-        pushButton_tricroisenreg->setGeometry(QRect(780, 60, 111, 28));
-        pushButton_tridecenreg = new QPushButton(tab_12);
-        pushButton_tridecenreg->setObjectName(QStringLiteral("pushButton_tridecenreg"));
-        pushButton_tridecenreg->setGeometry(QRect(780, 100, 111, 28));
-        pushButton_filtrerenregtype = new QPushButton(tab_12);
-        pushButton_filtrerenregtype->setObjectName(QStringLiteral("pushButton_filtrerenregtype"));
-        pushButton_filtrerenregtype->setGeometry(QRect(780, 200, 111, 28));
-        lineEdit_filterengtype = new QLineEdit(tab_12);
-        lineEdit_filterengtype->setObjectName(QStringLiteral("lineEdit_filterengtype"));
-        lineEdit_filterengtype->setGeometry(QRect(780, 170, 113, 22));
-        lineEdit_filterenregqualite = new QLineEdit(tab_12);
-        lineEdit_filterenregqualite->setObjectName(QStringLiteral("lineEdit_filterenregqualite"));
-        lineEdit_filterenregqualite->setGeometry(QRect(780, 260, 113, 22));
-        pushButton_filtrerenregqualite = new QPushButton(tab_12);
-        pushButton_filtrerenregqualite->setObjectName(QStringLiteral("pushButton_filtrerenregqualite"));
-        pushButton_filtrerenregqualite->setGeometry(QRect(780, 290, 111, 28));
-        pushButton_exportpdf = new QPushButton(tab_12);
-        pushButton_exportpdf->setObjectName(QStringLiteral("pushButton_exportpdf"));
-        pushButton_exportpdf->setGeometry(QRect(780, 330, 111, 28));
-        pushButton_statistiqueenr = new QPushButton(tab_12);
-        pushButton_statistiqueenr->setObjectName(QStringLiteral("pushButton_statistiqueenr"));
-        pushButton_statistiqueenr->setGeometry(QRect(780, 370, 111, 28));
-        label_179 = new QLabel(tab_12);
-        label_179->setObjectName(QStringLiteral("label_179"));
-        label_179->setGeometry(QRect(750, 230, 161, 21));
-        label_179->setStyleSheet(QStringLiteral("color:rgb(255, 255, 255)"));
-        label_180 = new QLabel(tab_12);
-        label_180->setObjectName(QStringLiteral("label_180"));
-        label_180->setGeometry(QRect(750, 140, 161, 21));
-        label_180->setStyleSheet(QStringLiteral("color:rgb(255, 255, 255)"));
-        pushButton_afficher_enr = new QPushButton(tab_12);
-        pushButton_afficher_enr->setObjectName(QStringLiteral("pushButton_afficher_enr"));
-        pushButton_afficher_enr->setGeometry(QRect(620, 420, 93, 28));
-        tabWidget_enrVideo->addTab(tab_12, QString());
         tab_24 = new QWidget();
         tab_24->setObjectName(QStringLiteral("tab_24"));
         label_126 = new QLabel(tab_24);
@@ -1405,51 +1334,6 @@ public:
 "text-decoration: underline;\n"
 "color:rgb(255, 255, 255)"));
         tabWidget_enrVideo->addTab(tab_24, QString());
-        tab_23 = new QWidget();
-        tab_23->setObjectName(QStringLiteral("tab_23"));
-        groupBox_Video = new QGroupBox(tab_23);
-        groupBox_Video->setObjectName(QStringLiteral("groupBox_Video"));
-        groupBox_Video->setGeometry(QRect(5, 42, 661, 231));
-        groupBox_Video->setStyleSheet(QLatin1String("QGroupBox\n"
-"{\n"
-"border:1px solid black;\n"
-"}"));
-        horizontalSlider_slidDureEnr = new QSlider(tab_23);
-        horizontalSlider_slidDureEnr->setObjectName(QStringLiteral("horizontalSlider_slidDureEnr"));
-        horizontalSlider_slidDureEnr->setGeometry(QRect(90, 290, 641, 22));
-        horizontalSlider_slidDureEnr->setOrientation(Qt::Horizontal);
-        label_tmpdebutenr = new QLabel(tab_23);
-        label_tmpdebutenr->setObjectName(QStringLiteral("label_tmpdebutenr"));
-        label_tmpdebutenr->setGeometry(QRect(0, 290, 81, 16));
-        QFont font7;
-        font7.setPointSize(10);
-        font7.setBold(true);
-        font7.setWeight(75);
-        label_tmpdebutenr->setFont(font7);
-        label_tempstotalenr = new QLabel(tab_23);
-        label_tempstotalenr->setObjectName(QStringLiteral("label_tempstotalenr"));
-        label_tempstotalenr->setGeometry(QRect(740, 290, 81, 16));
-        label_tempstotalenr->setFont(font7);
-        pushButton_volumeEnr = new QPushButton(tab_23);
-        pushButton_volumeEnr->setObjectName(QStringLiteral("pushButton_volumeEnr"));
-        pushButton_volumeEnr->setGeometry(QRect(550, 320, 51, 51));
-        pushButton_playpauseenr = new QPushButton(tab_23);
-        pushButton_playpauseenr->setObjectName(QStringLiteral("pushButton_playpauseenr"));
-        pushButton_playpauseenr->setGeometry(QRect(70, 320, 51, 51));
-        pushButton_seek_backEnr = new QPushButton(tab_23);
-        pushButton_seek_backEnr->setObjectName(QStringLiteral("pushButton_seek_backEnr"));
-        pushButton_seek_backEnr->setGeometry(QRect(0, 320, 51, 51));
-        pushButton_stopEnr = new QPushButton(tab_23);
-        pushButton_stopEnr->setObjectName(QStringLiteral("pushButton_stopEnr"));
-        pushButton_stopEnr->setGeometry(QRect(140, 320, 51, 51));
-        horizontalSlider_volumeenr = new QSlider(tab_23);
-        horizontalSlider_volumeenr->setObjectName(QStringLiteral("horizontalSlider_volumeenr"));
-        horizontalSlider_volumeenr->setGeometry(QRect(610, 340, 160, 22));
-        horizontalSlider_volumeenr->setOrientation(Qt::Horizontal);
-        pushButton_seek_forwardenr = new QPushButton(tab_23);
-        pushButton_seek_forwardenr->setObjectName(QStringLiteral("pushButton_seek_forwardenr"));
-        pushButton_seek_forwardenr->setGeometry(QRect(220, 320, 51, 51));
-        tabWidget_enrVideo->addTab(tab_23, QString());
         tabWidget->addTab(tab_4, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QStringLiteral("tab_2"));
@@ -2325,6 +2209,13 @@ public:
         pushButton_73->setText(QString());
         tabWidget_3->setTabText(tabWidget_3->indexOf(tab_10), QApplication::translate("MainWindow", "Consulter", Q_NULLPTR));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("MainWindow", "Diffusion", Q_NULLPTR));
+        label_141->setText(QApplication::translate("MainWindow", "Liste des enregistrements ", Q_NULLPTR));
+        lineEdit_idrecheng->setPlaceholderText(QApplication::translate("MainWindow", "Recherche par nom", Q_NULLPTR));
+        pushButton_exportpdf->setText(QApplication::translate("MainWindow", "Export Pdf ", Q_NULLPTR));
+        pushButton_statistiqueenr->setText(QApplication::translate("MainWindow", "Statistiques ", Q_NULLPTR));
+        pushButton_supenr->setText(QApplication::translate("MainWindow", "Supprimer", Q_NULLPTR));
+        pushButton_modifenr->setText(QApplication::translate("MainWindow", "Modifier", Q_NULLPTR));
+        tabWidget_enrVideo->setTabText(tabWidget_enrVideo->indexOf(tab_12), QApplication::translate("MainWindow", "Liste des enregistrements ", Q_NULLPTR));
         label_79->setText(QString());
         label_80->setText(QString());
         pushButton_30->setText(QApplication::translate("MainWindow", "Ajouter", Q_NULLPTR));
@@ -2341,23 +2232,7 @@ public:
         label_85->setText(QApplication::translate("MainWindow", "Identifiant :", Q_NULLPTR));
         label_86->setText(QApplication::translate("MainWindow", "Identifiant de l'emission :", Q_NULLPTR));
         label_81->setText(QApplication::translate("MainWindow", "Chemin relatif :", Q_NULLPTR));
-        tabWidget_enrVideo->setTabText(tabWidget_enrVideo->indexOf(tab_11), QApplication::translate("MainWindow", "Cr\303\251ation d'un enregistrement", Q_NULLPTR));
-        pushButton_85->setText(QApplication::translate("MainWindow", "Traduire ", Q_NULLPTR));
-        label_141->setText(QApplication::translate("MainWindow", "Liste des enregistrements :", Q_NULLPTR));
-        pushButton_suppenr->setText(QApplication::translate("MainWindow", "Supprimer", Q_NULLPTR));
-        label_175->setText(QApplication::translate("MainWindow", "Donner l'identifiant de l'enregistrement \303\240 supprimer ", Q_NULLPTR));
-        pushButton_rechEnreg->setText(QApplication::translate("MainWindow", "Chercher le nom", Q_NULLPTR));
-        label_178->setText(QApplication::translate("MainWindow", "Donner le nom de l'enregistrement \303\240 chercher", Q_NULLPTR));
-        pushButton_tricroisenreg->setText(QApplication::translate("MainWindow", "Tri Croissant", Q_NULLPTR));
-        pushButton_tridecenreg->setText(QApplication::translate("MainWindow", "Tri Decroissant", Q_NULLPTR));
-        pushButton_filtrerenregtype->setText(QApplication::translate("MainWindow", "Filtrer Par Type ", Q_NULLPTR));
-        pushButton_filtrerenregqualite->setText(QApplication::translate("MainWindow", "filtrerParQualite", Q_NULLPTR));
-        pushButton_exportpdf->setText(QApplication::translate("MainWindow", "Export Pdf ", Q_NULLPTR));
-        pushButton_statistiqueenr->setText(QApplication::translate("MainWindow", "Statistiques ", Q_NULLPTR));
-        label_179->setText(QApplication::translate("MainWindow", "Donner la qualite de filtrage ", Q_NULLPTR));
-        label_180->setText(QApplication::translate("MainWindow", "Donner le type de filtrage ", Q_NULLPTR));
-        pushButton_afficher_enr->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
-        tabWidget_enrVideo->setTabText(tabWidget_enrVideo->indexOf(tab_12), QApplication::translate("MainWindow", "Liste des enregistrements ", Q_NULLPTR));
+        tabWidget_enrVideo->setTabText(tabWidget_enrVideo->indexOf(tab_11), QApplication::translate("MainWindow", "Cr\303\251ation ", Q_NULLPTR));
         label_126->setText(QString());
         label_128->setText(QString());
         label_129->setText(QApplication::translate("MainWindow", "Nom de l'enregistrement :", Q_NULLPTR));
@@ -2381,15 +2256,6 @@ public:
         label_177->setText(QApplication::translate("MainWindow", "Identifiant de l'emission :", Q_NULLPTR));
         label_142->setText(QApplication::translate("MainWindow", "Modifier l'enregistrement :", Q_NULLPTR));
         tabWidget_enrVideo->setTabText(tabWidget_enrVideo->indexOf(tab_24), QApplication::translate("MainWindow", "Modification", Q_NULLPTR));
-        groupBox_Video->setTitle(QApplication::translate("MainWindow", "groupBox_Video", Q_NULLPTR));
-        label_tmpdebutenr->setText(QApplication::translate("MainWindow", "00:00:00", Q_NULLPTR));
-        label_tempstotalenr->setText(QApplication::translate("MainWindow", "00:00:00", Q_NULLPTR));
-        pushButton_volumeEnr->setText(QString());
-        pushButton_playpauseenr->setText(QString());
-        pushButton_seek_backEnr->setText(QString());
-        pushButton_stopEnr->setText(QString());
-        pushButton_seek_forwardenr->setText(QString());
-        tabWidget_enrVideo->setTabText(tabWidget_enrVideo->indexOf(tab_23), QApplication::translate("MainWindow", "Enregistrement", Q_NULLPTR));
         tabWidget->setTabText(tabWidget->indexOf(tab_4), QApplication::translate("MainWindow", "Enregistrement", Q_NULLPTR));
         label_14->setText(QString());
         label_15->setText(QApplication::translate("MainWindow", "ID_EMISSION:", Q_NULLPTR));

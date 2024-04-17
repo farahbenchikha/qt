@@ -24,8 +24,8 @@ MainWindow::MainWindow(QWidget *parent)
     // Créer le bouton "Export PDF"
     QPushButton *exportPDFButton = new QPushButton("Export PDF", this);
     connect(ui->pushButton_30, SIGNAL(timeout()),this,SLOT(on_pushButton_30_clicked()));
-    connect(ui->pushButton_suppenr, SIGNAL(timeout()),this,SLOT(on_pushButton_suppenr_clicked()));
-    connect(ui->pushButton_afficher_enr, SIGNAL(timeout()),this,SLOT(on_pushButton_afficher_enr_clicked()));
+    //connect(ui->pushButton_suppenr, SIGNAL(timeout()),this,SLOT(on_pushButton_suppenr_clicked()));
+  //  connect(ui->pushButton_afficher_enr, SIGNAL(timeout()),this,SLOT(on_pushButton_afficher_enr_clicked()));
     connect(ui->pushButton_64, SIGNAL(timeout()),this,SLOT(on_pushButton_64_clicked()));
     connect(ui->lineEdit_modifid_enr, SIGNAL(editingFinished()), this, SLOT(on_lineEdit_modifid_enr_editingFinished()));
     connect(exportPDFButton, &QPushButton::clicked, this, &MainWindow::on_pushButton_exportpdf_clicked);
@@ -52,7 +52,15 @@ void MainWindow::showtime()
 }
 void MainWindow::showtab()
 {
-    ui->tableView_enr->setModel(enr.afficher());
+    ui->tableView_enr->verticalHeader()->hide();
+    ui->tableView_enr->setSelectionBehavior(QAbstractItemView::SelectRows);
+    QSortFilterProxyModel *proxyModel = new QSortFilterProxyModel(enr.afficher());
+            proxyModel->setSourceModel(enr.afficher());
+
+            // Enable sorting in the proxy model
+            proxyModel->setSortCaseSensitivity(Qt::CaseInsensitive); // Set case sensitivity for sorting
+            ui->tableView_enr->setSortingEnabled(true); // Enable sorting in the view
+    ui->tableView_enr->setModel(proxyModel);
 
 }
 void MainWindow::on_pushButton_30_clicked()
@@ -91,37 +99,30 @@ void MainWindow::on_pushButton_afficher_enr_clicked()
     // Vérifier si le modèle est valide
     if (model) {
         // Définir les noms de colonnes sur le modèle de données
-        model->setHeaderData(0, Qt::Horizontal, QObject::tr("Nom de l'enregistrement"));
-        model->setHeaderData(1, Qt::Horizontal, QObject::tr("Durée"));
-        model->setHeaderData(2, Qt::Horizontal, QObject::tr("Type"));
-        model->setHeaderData(3, Qt::Horizontal, QObject::tr("Qualité"));
-        model->setHeaderData(4, Qt::Horizontal, QObject::tr("ID Enregistrement "));
-        model->setHeaderData(5, Qt::Horizontal, QObject::tr("ID Emission"));
+        model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));
+        model->setHeaderData(1, Qt::Horizontal, QObject::tr("Nom"));
+        model->setHeaderData(2, Qt::Horizontal, QObject::tr("ID Emission"));
+        model->setHeaderData(3, Qt::Horizontal, QObject::tr("Path"));
+        model->setHeaderData(4, Qt::Horizontal, QObject::tr("Qualité"));
 
-        // Afficher le modèle dans la vue
-        ui->tableView_enr->setModel(model);
-    } else {
+
+
+        QSortFilterProxyModel *proxyModel = new QSortFilterProxyModel(model);
+                proxyModel->setSourceModel(model);
+
+                // Enable sorting in the proxy model
+                proxyModel->setSortCaseSensitivity(Qt::CaseInsensitive); // Set case sensitivity for sorting
+                ui->tableView_enr->setSortingEnabled(true); // Enable sorting in the view
+        ui->tableView_enr->setModel(proxyModel);    } else {
         // Afficher un message d'erreur si le modèle est invalide
         QMessageBox::critical(this, "Erreur", "Une erreur est survenue lors de la récupération des enregistrements.");
     }
 }
 
 
+
+
 /*
-void MainWindow::on_pushButton_suppenr_clicked()
-{
-    int id_enr = ui->lineEdit_suppenr->text().toInt();;
-
-       enregistrement enr;
-       bool test = enr.supprimer(id_enr);
-       if (test) {
-           QMessageBox::information(this, "Succès", "L'enregistrement a été supprimé avec succès.");
-           ui->tableView_enr->setModel(enr.afficher());
-       } else {
-           QMessageBox::critical(this, "Erreur", "Une erreur est survenue lors de la suppression de l'enregistrement.");
-       }
-}
-
 void MainWindow::on_pushButton_64_clicked()
 {
     int id_enr = ui->lineEdit_modifid_enr->text().toInt();
@@ -223,7 +224,7 @@ void MainWindow::on_pushButton_tridecenreg_clicked()
         }
 }
 
-void MainWindow::on_pushButton_filtrerenregtype_clicked()
+/*void MainWindow::on_pushButton_filtrerenregtype_clicked()
 {
     QString type = ui->lineEdit_filterengtype->text(); // Récupérer le type spécifié par l'utilisateur depuis un lineEdit
 
@@ -236,7 +237,8 @@ void MainWindow::on_pushButton_filtrerenregtype_clicked()
     // Mettre à jour le modèle dans le view approprié (par exemple, un QTableView)
     ui->tableView_enr->setModel(filteredModel);
 }
-
+*/
+/*
 void MainWindow::on_pushButton_filtrerenregqualite_clicked()
 {
     QString qualite = ui->lineEdit_filterenregqualite->text(); // Récupérer la qualité spécifiée par l'utilisateur depuis un lineEdit
@@ -251,7 +253,7 @@ void MainWindow::on_pushButton_filtrerenregqualite_clicked()
         // Mettre à jour le modèle dans le view approprié (par exemple, un QTableView)
         ui->tableView_enr->setModel(filteredModel);
 }
-
+*/
 
 void MainWindow::on_lineEdit_modifid_enr_editingFinished()
 {
@@ -458,5 +460,58 @@ void MainWindow::on_pushButton_impEng_clicked()
     video->show();
     player->play();
     */
+}
+
+void MainWindow::on_lineEdit_idrecheng_textChanged(const QString &arg1)
+{
+    QString filterText = arg1.trimmed(); // Get the text from the QLineEdit and remove any leading/trailing whitespace
+
+    // If the filter text is not empty, filter the data in the table view
+    if (!filterText.isEmpty()) {
+        // Créer une instance de la classe enregistrement
+        enregistrement enreg;
+        QSqlQueryModel *filteredModel = enreg.filtrerParNom(arg1);
+        QSortFilterProxyModel *proxyModel = new QSortFilterProxyModel(filteredModel);
+                proxyModel->setSourceModel(filteredModel);
+
+                // Enable sorting in the proxy model
+                proxyModel->setSortCaseSensitivity(Qt::CaseInsensitive); // Set case sensitivity for sorting
+                ui->tableView_enr->setSortingEnabled(true); // Enable sorting in the view
+        ui->tableView_enr->setModel(proxyModel);    } else {
+    }
+}
+
+void MainWindow::on_pushButton_supenr_clicked()
+{
+    // Get the selection model for the table view
+    QItemSelectionModel *select = ui->tableView_enr->selectionModel();
+
+    // Retrieve the list of selected rows
+    QModelIndexList selectedRows = select->selectedRows();
+
+    // Iterate through the selected rows
+    foreach(const QModelIndex &index, selectedRows) {
+        // Assuming the ID is stored in the first column (column 0)
+        QVariant idVariant = ui->tableView_enr->model()->data(ui->tableView_enr->model()->index(index.row(), 0));
+        QVariant pathVariant = ui->tableView_enr->model()->data(ui->tableView_enr->model()->index(index.row(), 4));
+
+        // Convert the QVariant to the appropriate type (e.g., int)
+        int id_enr = idVariant.toInt();
+        QString path_enr = pathVariant.toString();
+
+        // Create an instance of your 'enregistrement' class
+        enregistrement enr;
+
+        // Attempt to delete the record using the retrieved ID
+        bool test = enr.supprimer(id_enr, path_enr);
+
+        // Display appropriate message based on deletion success or failure
+        if (test) {
+            QMessageBox::information(this, "Succès", "L'enregistrement a été supprimé avec succès.");
+            ui->tableView_enr->setModel(enr.afficher());
+        } else {
+            QMessageBox::critical(this, "Erreur", "Une erreur est survenue lors de la suppression de l'enregistrement.");
+        }
+    }
 }
 

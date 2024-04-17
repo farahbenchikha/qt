@@ -12,6 +12,11 @@
 #include <QSqlQuery>
 #include <QHeaderView>
 #include <QObject>
+#include <QFile>
+#include <QDir>
+#include <QCoreApplication>
+#include <iostream>
+
 enregistrement::enregistrement()
 {
 
@@ -56,18 +61,14 @@ QSqlQueryModel* enregistrement::afficher()
 {
     QSqlQueryModel *model = new QSqlQueryModel();
     QSqlQuery query;
-    query.prepare("SELECT NOM_ENR, QUALITE_ENR, ID_ENR, ID_EM_ENR , PATH_ENR FROM ENREGISTREMENT");
+    query.prepare("SELECT  ID_ENR, NOM_ENR, ID_EM_ENR ,PATH_ENR, QUALITE_ENR FROM ENREGISTREMENT");
     if (query.exec()) {
         model->setQuery(query);
-        // Définir les noms de colonnes pour le modèle
-        model->setHeaderData(0, Qt::Horizontal, tr("Nom de l'enregistrement"));
-        model->setHeaderData(3, Qt::Horizontal, tr("Qualité"));
-        model->setHeaderData(4, Qt::Horizontal, tr("ID Enregistrement"));
-        model->setHeaderData(5, Qt::Horizontal, tr("ID Emission"));
-        model->setHeaderData(6, Qt::Horizontal, tr("PATH Enregistrement "));
-
-      //  model->setHeaderData(6, Qt::Horizontal, tr("Compte par type")); // Si COUNT_BY_TYPE est la septième colonne
-
+        model->setHeaderData(0, Qt::Horizontal, tr("ID"));
+        model->setHeaderData(1, Qt::Horizontal, tr("Nom"));
+        model->setHeaderData(2, Qt::Horizontal, tr("ID Emission"));
+        model->setHeaderData(3, Qt::Horizontal, tr("Path"));
+        model->setHeaderData(4, Qt::Horizontal, tr("Qualité"));
         return model;
     } else {
         qDebug() << "Erreur lors de l'exécution de la requête :" << query.lastError().text();
@@ -75,42 +76,42 @@ QSqlQueryModel* enregistrement::afficher()
         return nullptr;
     }
 }
-/*
- bool enregistrement::supprimer(int id_enr)
+
+ bool enregistrement::supprimer(int id_enr, QString path)
  {
-     QSqlQuery checkQuery;
 
          if (id_enr <= 0) {
              qDebug() << "Erreur : ID invalide.";
              return false;
          }
-         checkQuery.prepare("SELECT TYPE_ENR FROM ENREGISTREMENT WHERE ID_ENR = :id_enr");
-         checkQuery.bindValue(":id_enr", id_enr);
-         if (checkQuery.exec() && checkQuery.next()) {
-             QString type_enr = checkQuery.value(0).toString();
-             QSqlQuery query;
+         // supprimer le video avant l'enregistrement
+         /*QString baseDir = QCoreApplication::applicationDirPath();
+         QString absoluteFilePath = QDir(baseDir).filePath(path);
+
+         QFile file(absoluteFilePath);
+
+         if (file.exists()) {
+             if (file.remove()) {
+                 return true;
+             } else {
+                 qDebug() << "Error deleting Video.";
+                 return false;
+             }
+         } else {
+             qDebug() << "Video does not exist.";
+             return false;
+         }*/
+         QSqlQuery query;
              query.prepare("DELETE FROM ENREGISTREMENT WHERE ID_ENR = :id_enr");
              query.bindValue(":id_enr", id_enr);
              if (query.exec()) {
-                 // Mettre à jour le compteur de type correspondant
-                 QSqlQuery updateQuery;
-                 updateQuery.prepare("UPDATE ENREGISTREMENT SET COUNT_BY_TYPE = COUNT_BY_TYPE - 1 WHERE TYPE_ENR = :type_enr");
-                 updateQuery.bindValue(":type_enr", type_enr);
-                 if (!updateQuery.exec()) {
-                     qDebug() << "Erreur lors de la mise à jour du compteur pour le type :" << updateQuery.lastError().text();
-                     // Gérer l'erreur ici si nécessaire...
-                 }
-                 return true;
              } else {
                  qDebug() << "Erreur lors de la suppression de l'enregistrement :" << query.lastError().text();
                  return false;
              }
-         } else {
-             qDebug() << "Erreur lors de la vérification de l'existence de l'ID :" << checkQuery.lastError().text();
-             return false;
-         }
+
  }
- */
+
 
 /*
  bool enregistrement::ajouterHistoriqueModification(int id_enr, const QString &utilisateur, const QString &description)
@@ -288,6 +289,16 @@ QSqlQueryModel* enregistrement::afficher()
      QSqlQuery query;
      query.prepare("SELECT * FROM enregistrement WHERE QUALITE_ENR = :qualite");
      query.bindValue(":qualite", qualite);
+     query.exec();
+     model->setQuery(query);
+     return model;
+ }
+ QSqlQueryModel* enregistrement::filtrerParNom(QString nom)
+ {
+     QSqlQueryModel *model = new QSqlQueryModel();
+     QSqlQuery query;
+     query.prepare("SELECT * FROM enregistrement WHERE NOM_ENR LIKE :nom");
+     query.bindValue(":nom", "%" + nom + "%");
      query.exec();
      model->setQuery(query);
      return model;

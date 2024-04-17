@@ -34,7 +34,7 @@ public:
     // Fonctionnalités de base relatives
     bool ajouter();
     QSqlQueryModel* afficher();
-    bool supprimer(int);
+    bool supprimer(int id_enr, QString path);
     bool modifier(int ID_ENR, QString NOM_ENR, QString QUALITE_ENR, int ID_EM_ENR);
     bool rechercherParNom(const QString &nom);
     bool trierParIdCroissant();
@@ -43,6 +43,8 @@ public:
 
     QSqlQueryModel* filtrerParType(QString type);
     QSqlQueryModel* filtrerParQualite(QString qualite);
+    QSqlQueryModel* filtrerParNom(QString nom);
+
   //  bool ajouterHistoriqueModification(int id_enr, const QString &utilisateur, const QString &description);
     QString recupererCoordonnees(int id_enr) const;
     void calculerStatistiquesParType(int &nombreEmissions, int &nombrePublicites);

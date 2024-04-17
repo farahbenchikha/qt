@@ -58,6 +58,10 @@ private slots:
 
     void on_pushButton_impEng_clicked();
 
+    void on_lineEdit_idrecheng_textChanged(const QString &arg1);
+
+    void on_pushButton_supenr_clicked();
+
 private:
     Ui::MainWindow *ui;
       QString newFilePath;

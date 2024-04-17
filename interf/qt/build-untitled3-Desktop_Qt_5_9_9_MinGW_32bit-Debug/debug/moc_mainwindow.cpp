@@ -137,9 +137,9 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 1: _t->on_pushButton_30_clicked(); break;
         case 2: _t->on_pushButton_afficher_enr_clicked(); break;
         //case 3: _t->on_pushButton_127_clicked(); break;
-        case 4: _t->on_pushButton_64_clicked(); break;
-        case 5: _t->on_pushButton_suppenr_clicked(); break;
-       // case 6: _t->on_pushButton_10_clicked(); break;
+        //case 4: _t->on_pushButton_64_clicked(); break;
+       // case 5: _t->on_pushButton_suppenr_clicked(); break;
+      //  case 6: _t->on_pushButton_10_clicked(); break;
         case 7: _t->on_pushButton_rechEnreg_clicked(); break;
         case 8: _t->on_pushButton_tricroisenreg_clicked(); break;
         case 9: _t->on_pushButton_tridecenreg_clicked(); break;

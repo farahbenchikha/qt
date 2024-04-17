@@ -17,32 +17,30 @@ enregistrement::enregistrement()
 
 }
 
-enregistrement::enregistrement(int ID_ENR, QString NOM_ENR,QString TYPE_ENR ,  QString QUALITE_ENR , QString DUREE_ENR , int ID_EM_ENR )
+enregistrement::enregistrement(int ID_ENR, QString NOM_ENR, QString QUALITE_ENR , int ID_EM_ENR , QString PATH_ENR)
 {
     this->NOM_ENR=NOM_ENR;
-    this->TYPE_ENR=TYPE_ENR;
     this->QUALITE_ENR=QUALITE_ENR;
-    this->DUREE_ENR=DUREE_ENR;
     this->ID_ENR=ID_ENR;
     this->ID_EM_ENR=ID_EM_ENR;
+    this->PATH_ENR=PATH_ENR;
 }
 
 bool enregistrement::ajouter()
 {
-    if (NOM_ENR.isEmpty() || QUALITE_ENR.isEmpty() || DUREE_ENR.isEmpty() || TYPE_ENR.isEmpty()) {
+    if (NOM_ENR.isEmpty() || QUALITE_ENR.isEmpty() || PATH_ENR.isEmpty()) {
         qDebug() << "Erreur : Veuillez remplir tous les champs obligatoires.";
         return false;
     }
 
     QSqlQuery query;
     QString res = QString::number(ID_ENR);
-    query.prepare("INSERT INTO ENREGISTREMENT (ID_ENR, NOM_ENR, QUALITE_ENR, DUREE_ENR, TYPE_ENR, ID_EM_ENR) VALUES (:ID_ENR, :NOM_ENR, :QUALITE_ENR, :DUREE_ENR, :TYPE_ENR, :ID_EM_ENR)");
+    query.prepare("INSERT INTO ENREGISTREMENT (ID_ENR, NOM_ENR, QUALITE_ENR, ID_EM_ENR , PATH_ENR) VALUES (:ID_ENR, :NOM_ENR, :QUALITE_ENR, :ID_EM_ENR , :PATH_ENR)");
     query.bindValue(":ID_ENR", res);
     query.bindValue(":NOM_ENR", NOM_ENR);
     query.bindValue(":QUALITE_ENR", QUALITE_ENR);
-    query.bindValue(":DUREE_ENR", DUREE_ENR);
-    query.bindValue(":TYPE_ENR", TYPE_ENR);
     query.bindValue(":ID_EM_ENR", ID_EM_ENR);
+    query.bindValue(":PATH_ENR", PATH_ENR);
 
     // Exécuter la requête d'insertion
     if (!query.exec()) {
@@ -50,14 +48,6 @@ bool enregistrement::ajouter()
         return false;
     }
 
-    // Mettre à jour le compteur de type
-    QSqlQuery updateQuery;
-    updateQuery.prepare("UPDATE ENREGISTREMENT SET COUNT_BY_TYPE = COUNT_BY_TYPE + 1 WHERE TYPE_ENR = :type");
-    updateQuery.bindValue(":type", TYPE_ENR);
-    if (!updateQuery.exec()) {
-        qDebug() << "Erreur lors de la mise à jour du compteur pour le type :" << updateQuery.lastError().text();
-        // Gérer l'erreur ici si nécessaire...
-    }
 
     return true;
 }
@@ -66,16 +56,16 @@ QSqlQueryModel* enregistrement::afficher()
 {
     QSqlQueryModel *model = new QSqlQueryModel();
     QSqlQuery query;
-    query.prepare("SELECT NOM_ENR, DUREE_ENR, TYPE_ENR, QUALITE_ENR, ID_ENR, ID_EM_ENR FROM ENREGISTREMENT");
+    query.prepare("SELECT NOM_ENR, QUALITE_ENR, ID_ENR, ID_EM_ENR , PATH_ENR FROM ENREGISTREMENT");
     if (query.exec()) {
         model->setQuery(query);
         // Définir les noms de colonnes pour le modèle
         model->setHeaderData(0, Qt::Horizontal, tr("Nom de l'enregistrement"));
-        model->setHeaderData(1, Qt::Horizontal, tr("Durée"));
-        model->setHeaderData(2, Qt::Horizontal, tr("Type"));
         model->setHeaderData(3, Qt::Horizontal, tr("Qualité"));
         model->setHeaderData(4, Qt::Horizontal, tr("ID Enregistrement"));
         model->setHeaderData(5, Qt::Horizontal, tr("ID Emission"));
+        model->setHeaderData(6, Qt::Horizontal, tr("PATH Enregistrement "));
+
       //  model->setHeaderData(6, Qt::Horizontal, tr("Compte par type")); // Si COUNT_BY_TYPE est la septième colonne
 
         return model;
@@ -85,7 +75,7 @@ QSqlQueryModel* enregistrement::afficher()
         return nullptr;
     }
 }
-
+/*
  bool enregistrement::supprimer(int id_enr)
  {
      QSqlQuery checkQuery;
@@ -120,6 +110,8 @@ QSqlQueryModel* enregistrement::afficher()
              return false;
          }
  }
+ */
+
 /*
  bool enregistrement::ajouterHistoriqueModification(int id_enr, const QString &utilisateur, const QString &description)
  {
@@ -134,6 +126,7 @@ QSqlQueryModel* enregistrement::afficher()
      return query.exec();
  }
 */
+/*
  bool enregistrement::modifier(int ID_ENR, QString NOM_ENR, QString TYPE_ENR, QString QUALITE_ENR, QString DUREE_ENR, int ID_EM_ENR)
  {
 
@@ -180,7 +173,7 @@ QSqlQueryModel* enregistrement::afficher()
          return false;
      }
  }
-
+*/
  bool enregistrement::rechercherParNom(const QString &nom)
  {
      // Préparer la requête pour compter le nombre d'enregistrements avec le nom spécifié

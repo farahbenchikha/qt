@@ -58,13 +58,11 @@ void MainWindow::showtab()
 void MainWindow::on_pushButton_30_clicked()
 {
     QString NOM_ENR = ui->lineEdit_nomenr->text();
-    QString DUREE_ENR = ui->timeEdit_enr->text();
-    QString TYPE_ENR = ui->comboBox_type_enr->currentText();
     QString QUALITE_ENR = ui->comboBox_qualite_enr->currentText();
     int ID_ENR = ui->lineEdit_id_enr->text().toInt();
     int ID_EM_ENR = ui->lineEdit_id_em_enr->text().toInt();
 
-    enregistrement enr(ID_ENR, NOM_ENR, TYPE_ENR, QUALITE_ENR, DUREE_ENR, ID_EM_ENR);
+    enregistrement enr(ID_ENR, NOM_ENR,QUALITE_ENR, ID_EM_ENR , newFilePath);
 
     bool test = enr.ajouter();
 
@@ -80,14 +78,12 @@ void MainWindow::on_pushButton_afficher_enr_clicked()
 {
     // Récupérer les données de l'interface utilisateur
     QString NOM_ENR = ui->lineEdit_nomenr->text();
-    QString DUREE_ENR = ui->timeEdit_enr->text();
-    QString TYPE_ENR = ui->comboBox_type_enr->currentText();
     QString QUALITE_ENR = ui->comboBox_qualite_enr->currentText();
     int ID_ENR = ui->lineEdit_id_enr->text().toInt();
     int ID_EM_ENR = ui->lineEdit_id_em_enr->text().toInt();
 
     // Créer une instance de la classe enregistrement
-    enregistrement enr(ID_ENR, NOM_ENR, TYPE_ENR, QUALITE_ENR, DUREE_ENR, ID_EM_ENR);
+    enregistrement enr(ID_ENR, NOM_ENR,QUALITE_ENR, ID_EM_ENR , newFilePath);
 
     // Appeler la fonction d'affichage des enregistrements
     QAbstractItemModel *model = enr.afficher();
@@ -111,7 +107,7 @@ void MainWindow::on_pushButton_afficher_enr_clicked()
 }
 
 
-
+/*
 void MainWindow::on_pushButton_suppenr_clicked()
 {
     int id_enr = ui->lineEdit_suppenr->text().toInt();;
@@ -139,7 +135,7 @@ void MainWindow::on_pushButton_64_clicked()
 
        // Modifier l'enregistrement avec les nouvelles données
        enregistrement enr;
-       bool test = enr.modifier(id_enr, nouveau_nom_enr, nouveau_type_enr, nouvelle_qualite_enr, nouvelle_duree_enr, nouveau_id_em_enr);
+       bool test = enr.modifier(id_enr, nouveau_nom_enr, nouvelle_qualite_enr, nouveau_id_em_enr);
 
        if (test) {
            QMessageBox::information(this, "Succès", "L'enregistrement a été modifié avec succès.");
@@ -150,7 +146,7 @@ void MainWindow::on_pushButton_64_clicked()
        }
 }
 
-
+*/
 void MainWindow::on_pushButton_rechEnreg_clicked()
 {
     QString nom_enr = ui->lineEdit_idrecheng->text();
@@ -440,13 +436,27 @@ void MainWindow::on_pushButton_statistiqueenr_clicked()
 
 void MainWindow::on_pushButton_impEng_clicked()
 {
-    QString FileName = QFileDialog::getOpenFileName(this,tr("Selectionner le fichier de la video "),"",tr("MP4 Files (*.MP4)"));
-    QMediaPlayer *player = new QMediaPlayer();
+    QString originalFilePath = QFileDialog::getOpenFileName(this, tr("Selectionner le fichier de la video"), "", tr("MP4 Files (*.MP4)"));
+    QString newDirectory = "./videos/";
+
+    if (!originalFilePath.isEmpty()) {
+        QFileInfo originalFileInfo(originalFilePath);
+        QString newFileName = newDirectory + originalFileInfo.fileName();
+        if (QFile::copy(originalFilePath, newFileName)) {
+            newFilePath = newFileName;
+        } else {
+            qDebug() << "Failed to copy file.";
+        }
+        ui->lineEdit_cheminEnr->setText(newFilePath);
+    }
+
+    /*   QMediaPlayer *player = new QMediaPlayer();
     QVideoWidget *video =new QVideoWidget();
     video->setGeometry(20,20,640,480);
     player->setVideoOutput(video);
     player->setMedia(QUrl(FileName));
     video->show();
     player->play();
+    */
 }
 

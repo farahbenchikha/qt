@@ -60,5 +60,6 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+      QString newFilePath;
 };
 #endif // MAINWINDOW_H

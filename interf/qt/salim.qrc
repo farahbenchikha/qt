@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="salim">salim.qrc</file>
+        <file>logo qt copie.png</file>
+        <file>home.qrc</file>
+    </qresource>
+    <qresource prefix="/salim1">
+        <file>logo qt copie.png</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/list">
+        <file>listtt.png</file>
+    </qresource>
+</RCC>

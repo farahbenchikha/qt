@@ -35,7 +35,7 @@ public:
     bool ajouter();
     QSqlQueryModel* afficher();
     bool supprimer(int id_enr, QString path);
-    bool modifier(int ID_ENR, QString NOM_ENR, QString QUALITE_ENR, int ID_EM_ENR);
+    bool modifier(int ID_ENR, QString NOM_ENR, QString QUALITE_ENR, int ID_EM_ENR, QString PATH_ENR );
     bool rechercherParNom(const QString &nom);
     bool trierParIdCroissant();
     bool trierParIdDecroissant();

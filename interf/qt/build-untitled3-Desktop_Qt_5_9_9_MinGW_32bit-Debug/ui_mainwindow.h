@@ -186,7 +186,6 @@ public:
     QPushButton *pushButton_exportpdf;
     QPushButton *pushButton_statistiqueenr;
     QPushButton *pushButton_supenr;
-    QPushButton *pushButton_modifenr;
     QWidget *tab_11;
     QLabel *label_79;
     QLabel *label_80;
@@ -206,21 +205,19 @@ public:
     QWidget *tab_24;
     QLabel *label_126;
     QLabel *label_128;
-    QLabel *label_129;
-    QLineEdit *lineEdit_modifnom_enr;
-    QComboBox *comboBox_modiftype_enr;
-    QLabel *label_130;
-    QComboBox *comboBox_modifqualite_enr;
-    QLabel *label_131;
-    QLabel *label_132;
-    QTimeEdit *timeEdit_modifduree_enr;
-    QPushButton *pushButton_64;
-    QPushButton *pushButton_89;
-    QLineEdit *lineEdit_modifid_emenr;
-    QLabel *label_176;
-    QLabel *label_177;
-    QLineEdit *lineEdit_modifid_enr;
     QLabel *label_142;
+    QLineEdit *lineEdit_modifnomenr;
+    QLabel *label_99;
+    QLabel *label_100;
+    QLabel *label_101;
+    QComboBox *comboBox_modifqualite_enr_2;
+    QLineEdit *lineEdit_modifidenrEm;
+    QLabel *label_102;
+    QComboBox *comboBox_modifIdenr;
+    QPushButton *pushButton_impEng_3;
+    QLineEdit *lineEdit_modifcheminEnr;
+    QLabel *label_148;
+    QPushButton *pushButton_32;
     QWidget *tab_2;
     QTabWidget *tabWidget_7;
     QWidget *tab_17;
@@ -1205,9 +1202,6 @@ public:
         pushButton_supenr = new QPushButton(tab_12);
         pushButton_supenr->setObjectName(QStringLiteral("pushButton_supenr"));
         pushButton_supenr->setGeometry(QRect(790, 80, 93, 28));
-        pushButton_modifenr = new QPushButton(tab_12);
-        pushButton_modifenr->setObjectName(QStringLiteral("pushButton_modifenr"));
-        pushButton_modifenr->setGeometry(QRect(680, 80, 93, 28));
         tabWidget_enrVideo->addTab(tab_12, QString());
         tab_11 = new QWidget();
         tab_11->setObjectName(QStringLiteral("tab_11"));
@@ -1276,63 +1270,54 @@ public:
         label_126->setStyleSheet(QStringLiteral("background-color: rgb(63, 63, 63);"));
         label_128 = new QLabel(tab_24);
         label_128->setObjectName(QStringLiteral("label_128"));
-        label_128->setGeometry(QRect(60, 80, 731, 361));
+        label_128->setGeometry(QRect(30, 90, 841, 361));
         label_128->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
-        label_129 = new QLabel(tab_24);
-        label_129->setObjectName(QStringLiteral("label_129"));
-        label_129->setGeometry(QRect(80, 180, 161, 21));
-        lineEdit_modifnom_enr = new QLineEdit(tab_24);
-        lineEdit_modifnom_enr->setObjectName(QStringLiteral("lineEdit_modifnom_enr"));
-        lineEdit_modifnom_enr->setGeometry(QRect(110, 210, 441, 31));
-        lineEdit_modifnom_enr->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
-        comboBox_modiftype_enr = new QComboBox(tab_24);
-        comboBox_modiftype_enr->setObjectName(QStringLiteral("comboBox_modiftype_enr"));
-        comboBox_modiftype_enr->setGeometry(QRect(110, 280, 441, 31));
-        comboBox_modiftype_enr->setStyleSheet(QLatin1String("background-color: rgb(66, 66, 66);\n"
-"color: rgb(243, 243, 243);"));
-        label_130 = new QLabel(tab_24);
-        label_130->setObjectName(QStringLiteral("label_130"));
-        label_130->setGeometry(QRect(80, 250, 221, 21));
-        comboBox_modifqualite_enr = new QComboBox(tab_24);
-        comboBox_modifqualite_enr->setObjectName(QStringLiteral("comboBox_modifqualite_enr"));
-        comboBox_modifqualite_enr->setGeometry(QRect(110, 340, 441, 31));
-        comboBox_modifqualite_enr->setStyleSheet(QLatin1String("background-color: rgb(66, 66, 66);\n"
-"color: rgb(243, 243, 243);"));
-        label_131 = new QLabel(tab_24);
-        label_131->setObjectName(QStringLiteral("label_131"));
-        label_131->setGeometry(QRect(80, 320, 221, 21));
-        label_132 = new QLabel(tab_24);
-        label_132->setObjectName(QStringLiteral("label_132"));
-        label_132->setGeometry(QRect(80, 380, 221, 21));
-        timeEdit_modifduree_enr = new QTimeEdit(tab_24);
-        timeEdit_modifduree_enr->setObjectName(QStringLiteral("timeEdit_modifduree_enr"));
-        timeEdit_modifduree_enr->setGeometry(QRect(110, 400, 441, 31));
-        pushButton_64 = new QPushButton(tab_24);
-        pushButton_64->setObjectName(QStringLiteral("pushButton_64"));
-        pushButton_64->setGeometry(QRect(610, 400, 93, 28));
-        pushButton_89 = new QPushButton(tab_24);
-        pushButton_89->setObjectName(QStringLiteral("pushButton_89"));
-        pushButton_89->setGeometry(QRect(610, 360, 93, 21));
-        lineEdit_modifid_emenr = new QLineEdit(tab_24);
-        lineEdit_modifid_emenr->setObjectName(QStringLiteral("lineEdit_modifid_emenr"));
-        lineEdit_modifid_emenr->setGeometry(QRect(230, 140, 151, 22));
-        label_176 = new QLabel(tab_24);
-        label_176->setObjectName(QStringLiteral("label_176"));
-        label_176->setGeometry(QRect(80, 100, 191, 21));
-        label_176->setStyleSheet(QStringLiteral("color:rgb(0, 0, 0)"));
-        label_177 = new QLabel(tab_24);
-        label_177->setObjectName(QStringLiteral("label_177"));
-        label_177->setGeometry(QRect(78, 140, 151, 21));
-        label_177->setStyleSheet(QStringLiteral("color:rgb(0, 0, 0)"));
-        lineEdit_modifid_enr = new QLineEdit(tab_24);
-        lineEdit_modifid_enr->setObjectName(QStringLiteral("lineEdit_modifid_enr"));
-        lineEdit_modifid_enr->setGeometry(QRect(270, 100, 113, 22));
         label_142 = new QLabel(tab_24);
         label_142->setObjectName(QStringLiteral("label_142"));
-        label_142->setGeometry(QRect(240, 20, 591, 51));
-        label_142->setStyleSheet(QLatin1String("font: 16pt \"MS Shell Dlg 2\";\n"
-"text-decoration: underline;\n"
+        label_142->setGeometry(QRect(200, 20, 591, 51));
+        label_142->setStyleSheet(QLatin1String("font: 25pt \"MS Shell Dlg 2\";\n"
 "color:rgb(255, 255, 255)"));
+        lineEdit_modifnomenr = new QLineEdit(tab_24);
+        lineEdit_modifnomenr->setObjectName(QStringLiteral("lineEdit_modifnomenr"));
+        lineEdit_modifnomenr->setGeometry(QRect(270, 200, 581, 31));
+        lineEdit_modifnomenr->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
+        label_99 = new QLabel(tab_24);
+        label_99->setObjectName(QStringLiteral("label_99"));
+        label_99->setGeometry(QRect(70, 250, 221, 21));
+        label_100 = new QLabel(tab_24);
+        label_100->setObjectName(QStringLiteral("label_100"));
+        label_100->setGeometry(QRect(70, 170, 151, 21));
+        label_101 = new QLabel(tab_24);
+        label_101->setObjectName(QStringLiteral("label_101"));
+        label_101->setGeometry(QRect(70, 210, 171, 21));
+        comboBox_modifqualite_enr_2 = new QComboBox(tab_24);
+        comboBox_modifqualite_enr_2->setObjectName(QStringLiteral("comboBox_modifqualite_enr_2"));
+        comboBox_modifqualite_enr_2->setGeometry(QRect(270, 250, 581, 31));
+        comboBox_modifqualite_enr_2->setStyleSheet(QLatin1String("background-color: rgb(66, 66, 66);\n"
+"color: rgb(243, 243, 243);"));
+        lineEdit_modifidenrEm = new QLineEdit(tab_24);
+        lineEdit_modifidenrEm->setObjectName(QStringLiteral("lineEdit_modifidenrEm"));
+        lineEdit_modifidenrEm->setGeometry(QRect(270, 170, 581, 22));
+        lineEdit_modifidenrEm->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
+        label_102 = new QLabel(tab_24);
+        label_102->setObjectName(QStringLiteral("label_102"));
+        label_102->setGeometry(QRect(70, 130, 131, 16));
+        comboBox_modifIdenr = new QComboBox(tab_24);
+        comboBox_modifIdenr->setObjectName(QStringLiteral("comboBox_modifIdenr"));
+        comboBox_modifIdenr->setGeometry(QRect(270, 130, 581, 22));
+        pushButton_impEng_3 = new QPushButton(tab_24);
+        pushButton_impEng_3->setObjectName(QStringLiteral("pushButton_impEng_3"));
+        pushButton_impEng_3->setGeometry(QRect(590, 290, 251, 41));
+        lineEdit_modifcheminEnr = new QLineEdit(tab_24);
+        lineEdit_modifcheminEnr->setObjectName(QStringLiteral("lineEdit_modifcheminEnr"));
+        lineEdit_modifcheminEnr->setEnabled(false);
+        lineEdit_modifcheminEnr->setGeometry(QRect(180, 350, 671, 22));
+        label_148 = new QLabel(tab_24);
+        label_148->setObjectName(QStringLiteral("label_148"));
+        label_148->setGeometry(QRect(70, 350, 111, 16));
+        pushButton_32 = new QPushButton(tab_24);
+        pushButton_32->setObjectName(QStringLiteral("pushButton_32"));
+        pushButton_32->setGeometry(QRect(70, 390, 781, 41));
         tabWidget_enrVideo->addTab(tab_24, QString());
         tabWidget->addTab(tab_4, QString());
         tab_2 = new QWidget();
@@ -2053,7 +2038,7 @@ public:
         tabWidget->setCurrentIndex(2);
         tabWidget_2->setCurrentIndex(0);
         tabWidget_3->setCurrentIndex(1);
-        tabWidget_enrVideo->setCurrentIndex(0);
+        tabWidget_enrVideo->setCurrentIndex(2);
         tabWidget_7->setCurrentIndex(4);
         tabWidget_5->setCurrentIndex(1);
         tabWidget_6->setCurrentIndex(4);
@@ -2214,7 +2199,6 @@ public:
         pushButton_exportpdf->setText(QApplication::translate("MainWindow", "Export Pdf ", Q_NULLPTR));
         pushButton_statistiqueenr->setText(QApplication::translate("MainWindow", "Statistiques ", Q_NULLPTR));
         pushButton_supenr->setText(QApplication::translate("MainWindow", "Supprimer", Q_NULLPTR));
-        pushButton_modifenr->setText(QApplication::translate("MainWindow", "Modifier", Q_NULLPTR));
         tabWidget_enrVideo->setTabText(tabWidget_enrVideo->indexOf(tab_12), QApplication::translate("MainWindow", "Liste des enregistrements ", Q_NULLPTR));
         label_79->setText(QString());
         label_80->setText(QString());
@@ -2235,26 +2219,20 @@ public:
         tabWidget_enrVideo->setTabText(tabWidget_enrVideo->indexOf(tab_11), QApplication::translate("MainWindow", "Cr\303\251ation ", Q_NULLPTR));
         label_126->setText(QString());
         label_128->setText(QString());
-        label_129->setText(QApplication::translate("MainWindow", "Nom de l'enregistrement :", Q_NULLPTR));
-        comboBox_modiftype_enr->clear();
-        comboBox_modiftype_enr->insertItems(0, QStringList()
-         << QApplication::translate("MainWindow", "emission", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "publicite", Q_NULLPTR)
-        );
-        label_130->setText(QApplication::translate("MainWindow", "Type de l'enregistrement :", Q_NULLPTR));
-        comboBox_modifqualite_enr->clear();
-        comboBox_modifqualite_enr->insertItems(0, QStringList()
+        label_142->setText(QApplication::translate("MainWindow", "Modifier l'enregistrement", Q_NULLPTR));
+        label_99->setText(QApplication::translate("MainWindow", "Qualit\303\251 :", Q_NULLPTR));
+        label_100->setText(QApplication::translate("MainWindow", "Identifiant de l'emission :", Q_NULLPTR));
+        label_101->setText(QApplication::translate("MainWindow", "Nom :", Q_NULLPTR));
+        comboBox_modifqualite_enr_2->clear();
+        comboBox_modifqualite_enr_2->insertItems(0, QStringList()
          << QApplication::translate("MainWindow", "1080p HD", Q_NULLPTR)
          << QApplication::translate("MainWindow", "720p", Q_NULLPTR)
          << QApplication::translate("MainWindow", "480p", Q_NULLPTR)
         );
-        label_131->setText(QApplication::translate("MainWindow", "Qualit\303\251 de l'enregistrement :", Q_NULLPTR));
-        label_132->setText(QApplication::translate("MainWindow", "Dur\303\251e de l'enregistrement :", Q_NULLPTR));
-        pushButton_64->setText(QApplication::translate("MainWindow", "Modifier", Q_NULLPTR));
-        pushButton_89->setText(QApplication::translate("MainWindow", "Traduire ", Q_NULLPTR));
-        label_176->setText(QApplication::translate("MainWindow", "Identifiant de l'enregistrement :", Q_NULLPTR));
-        label_177->setText(QApplication::translate("MainWindow", "Identifiant de l'emission :", Q_NULLPTR));
-        label_142->setText(QApplication::translate("MainWindow", "Modifier l'enregistrement :", Q_NULLPTR));
+        label_102->setText(QApplication::translate("MainWindow", "Identifiant :", Q_NULLPTR));
+        pushButton_impEng_3->setText(QApplication::translate("MainWindow", "Changer la video", Q_NULLPTR));
+        label_148->setText(QApplication::translate("MainWindow", "Chemin relatif :", Q_NULLPTR));
+        pushButton_32->setText(QApplication::translate("MainWindow", "Modifier", Q_NULLPTR));
         tabWidget_enrVideo->setTabText(tabWidget_enrVideo->indexOf(tab_24), QApplication::translate("MainWindow", "Modification", Q_NULLPTR));
         tabWidget->setTabText(tabWidget->indexOf(tab_4), QApplication::translate("MainWindow", "Enregistrement", Q_NULLPTR));
         label_14->setText(QString());

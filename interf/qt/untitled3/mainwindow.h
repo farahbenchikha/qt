@@ -29,28 +29,11 @@ private slots:
 
     void on_pushButton_afficher_enr_clicked();
 
-    void on_pushButton_127_clicked();
-
-    void on_pushButton_64_clicked();
-    void on_pushButton_suppenr_clicked();
-
-    void on_pushButton_10_clicked();
-
     void on_pushButton_rechEnreg_clicked();
 
     void on_pushButton_tricroisenreg_clicked();
 
     void on_pushButton_tridecenreg_clicked();
-
-    void on_pushButton_filtrerenregtype_clicked();
-
-
-    void on_pushButton_filtrerenregqualite_clicked();
-
-    void on_lineEdit_filtrerenregdure_cursorPositionChanged(int arg1, int arg2);
-
-
-    void on_lineEdit_modifid_enr_editingFinished();
 
     void on_pushButton_exportpdf_clicked();
 
@@ -62,8 +45,17 @@ private slots:
 
     void on_pushButton_supenr_clicked();
 
+    void on_pushButton_modifenr_clicked();
+
+    void on_comboBox_modifIdenr_currentIndexChanged(const QString &arg1);
+
+    void on_pushButton_impEng_3_clicked();
+
+    void on_pushButton_32_clicked();
+
 private:
     Ui::MainWindow *ui;
       QString newFilePath;
+      int selectedEnrId;
 };
 #endif // MAINWINDOW_H

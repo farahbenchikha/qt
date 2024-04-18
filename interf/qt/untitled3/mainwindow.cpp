@@ -26,8 +26,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->pushButton_30, SIGNAL(timeout()),this,SLOT(on_pushButton_30_clicked()));
     //connect(ui->pushButton_suppenr, SIGNAL(timeout()),this,SLOT(on_pushButton_suppenr_clicked()));
   //  connect(ui->pushButton_afficher_enr, SIGNAL(timeout()),this,SLOT(on_pushButton_afficher_enr_clicked()));
-    connect(ui->pushButton_64, SIGNAL(timeout()),this,SLOT(on_pushButton_64_clicked()));
-    connect(ui->lineEdit_modifid_enr, SIGNAL(editingFinished()), this, SLOT(on_lineEdit_modifid_enr_editingFinished()));
+    //connect(ui->pushButton_64, SIGNAL(timeout()),this,SLOT(on_pushButton_64_clicked()));
+    //connect(ui->lineEdit_modifid_enr, SIGNAL(editingFinished()), this, SLOT(on_lineEdit_modifid_enr_editingFinished()));
     connect(exportPDFButton, &QPushButton::clicked, this, &MainWindow::on_pushButton_exportpdf_clicked);
 
     //showtime();
@@ -37,6 +37,9 @@ MainWindow::MainWindow(QWidget *parent)
     QDateTime date=QDateTime::currentDateTime();
     QString datetext=date.toString();
     ui->date->setText(datetext);
+
+    // init modification
+
 }
 
 MainWindow::~MainWindow()
@@ -60,7 +63,18 @@ void MainWindow::showtab()
             // Enable sorting in the proxy model
             proxyModel->setSortCaseSensitivity(Qt::CaseInsensitive); // Set case sensitivity for sorting
             ui->tableView_enr->setSortingEnabled(true); // Enable sorting in the view
+            ui->tableView_enr->setSelectionMode(QAbstractItemView::SingleSelection);
+
     ui->tableView_enr->setModel(proxyModel);
+    // Clear the existing items in the combo box
+       ui->comboBox_modifIdenr->clear();
+
+       // Fill the combo box with items from the model
+       for (int row = 0; row < enr.afficher()->rowCount(); ++row) {
+           QModelIndex index = enr.afficher()->index(row, 0); // Assuming the ID is in the first column
+           QVariant data = enr.afficher()->data(index, Qt::DisplayRole);
+           ui->comboBox_modifIdenr->addItem(data.toString());
+       }
 
 }
 void MainWindow::on_pushButton_30_clicked()
@@ -113,6 +127,8 @@ void MainWindow::on_pushButton_afficher_enr_clicked()
                 // Enable sorting in the proxy model
                 proxyModel->setSortCaseSensitivity(Qt::CaseInsensitive); // Set case sensitivity for sorting
                 ui->tableView_enr->setSortingEnabled(true); // Enable sorting in the view
+                ui->tableView_enr->setSelectionMode(QAbstractItemView::SingleSelection);
+
         ui->tableView_enr->setModel(proxyModel);    } else {
         // Afficher un message d'erreur si le modèle est invalide
         QMessageBox::critical(this, "Erreur", "Une erreur est survenue lors de la récupération des enregistrements.");
@@ -255,7 +271,7 @@ void MainWindow::on_pushButton_filtrerenregqualite_clicked()
 }
 */
 
-void MainWindow::on_lineEdit_modifid_enr_editingFinished()
+/*void MainWindow::on_lineEdit_modifid_enr_editingFinished()
 {
     int id_enr = ui->lineEdit_modifid_enr->text().toInt();
 
@@ -278,7 +294,7 @@ void MainWindow::on_lineEdit_modifid_enr_editingFinished()
             ui->lineEdit_modifid_emenr->setText(QString::number(id_em_enr));
         }
 }
-
+*/
 void MainWindow::on_pushButton_exportpdf_clicked()
 {
 
@@ -439,12 +455,12 @@ void MainWindow::on_pushButton_statistiqueenr_clicked()
 void MainWindow::on_pushButton_impEng_clicked()
 {
     QString originalFilePath = QFileDialog::getOpenFileName(this, tr("Selectionner le fichier de la video"), "", tr("MP4 Files (*.MP4)"));
-    QString newDirectory = "./videos/";
+    QString newDirectory = "/videos/";
 
     if (!originalFilePath.isEmpty()) {
         QFileInfo originalFileInfo(originalFilePath);
         QString newFileName = newDirectory + originalFileInfo.fileName();
-        if (QFile::copy(originalFilePath, newFileName)) {
+        if (QFile::copy(originalFilePath, '.'+newFileName)) {
             newFilePath = newFileName;
         } else {
             qDebug() << "Failed to copy file.";
@@ -477,6 +493,8 @@ void MainWindow::on_lineEdit_idrecheng_textChanged(const QString &arg1)
                 // Enable sorting in the proxy model
                 proxyModel->setSortCaseSensitivity(Qt::CaseInsensitive); // Set case sensitivity for sorting
                 ui->tableView_enr->setSortingEnabled(true); // Enable sorting in the view
+                ui->tableView_enr->setSelectionMode(QAbstractItemView::SingleSelection);
+
         ui->tableView_enr->setModel(proxyModel);    } else {
     }
 }
@@ -493,7 +511,7 @@ void MainWindow::on_pushButton_supenr_clicked()
     foreach(const QModelIndex &index, selectedRows) {
         // Assuming the ID is stored in the first column (column 0)
         QVariant idVariant = ui->tableView_enr->model()->data(ui->tableView_enr->model()->index(index.row(), 0));
-        QVariant pathVariant = ui->tableView_enr->model()->data(ui->tableView_enr->model()->index(index.row(), 4));
+        QVariant pathVariant = ui->tableView_enr->model()->data(ui->tableView_enr->model()->index(index.row(), 3));
 
         // Convert the QVariant to the appropriate type (e.g., int)
         int id_enr = idVariant.toInt();
@@ -515,3 +533,67 @@ void MainWindow::on_pushButton_supenr_clicked()
     }
 }
 
+
+void MainWindow::on_pushButton_modifenr_clicked()
+{
+    QModelIndex selectedIndex =  ui->tableView_enr->selectionModel()->currentIndex();
+       if (selectedIndex.isValid()) {
+           QVariant data = ui->tableView_enr->model()->data(selectedIndex, Qt::DisplayRole);
+
+       } else {
+           qDebug() << "No item selected.";
+       }
+}
+
+
+void MainWindow::on_comboBox_modifIdenr_currentIndexChanged(const QString &arg1)
+{
+    QSqlQuery query;
+    query.prepare("SELECT ID_ENR, NOM_ENR, QUALITE_ENR, ID_EM_ENR, PATH_ENR FROM ENREGISTREMENT WHERE ID_ENR = ?");
+    query.bindValue(0, arg1);
+    if (query.exec() && query.next()) {
+        QString NOM_ENR = query.value(1).toString();
+        QString QUALITE_ENR = query.value(2).toString();
+        QString ID_EM_ENR = query.value(3).toString();
+        QString PATH_ENR = query.value(4).toString();
+        ui->lineEdit_modifnomenr->setText(NOM_ENR);
+        ui->lineEdit_modifidenrEm->setText(ID_EM_ENR);
+        ui->lineEdit_modifcheminEnr->setText(PATH_ENR);
+    }
+}
+
+void MainWindow::on_pushButton_impEng_3_clicked()
+{
+    QString originalFilePath = QFileDialog::getOpenFileName(this, tr("Selectionner le fichier de la video"), "", tr("MP4 Files (*.MP4)"));
+    QString newDirectory = "/videos/";
+
+    if (!originalFilePath.isEmpty()) {
+        QFileInfo originalFileInfo(originalFilePath);
+        QString newFileName = newDirectory + originalFileInfo.fileName();
+        if (QFile::copy(originalFilePath, '.'+newFileName)) {
+            newFilePath = newFileName;
+        } else {
+            qDebug() << "Failed to copy file.";
+        }
+        ui->lineEdit_modifcheminEnr->setText(newFilePath);
+    }
+}
+
+void MainWindow::on_pushButton_32_clicked()
+{
+    QString NOM_ENR = ui->lineEdit_modifnomenr->text();
+    QString QUALITE_ENR = ui->comboBox_modifqualite_enr_2->currentText();
+    int ID_ENR = ui->comboBox_modifIdenr->currentText().toInt();
+    int ID_EM_ENR = ui->lineEdit_modifidenrEm->text().toInt();
+    QString PATH_ENR = ui->lineEdit_modifcheminEnr->text();
+
+
+    bool test = enr.modifier( ID_ENR, NOM_ENR,  QUALITE_ENR, ID_EM_ENR,  PATH_ENR);
+
+    if (test) {
+        QMessageBox::information(this, "Succès", "L'enregistrement a été ajouté avec succès.");
+        ui->tableView_enr->setModel(enr.afficher());
+    } else {
+        QMessageBox::critical(this, "Erreur", "Une erreur est survenue lors de l'ajout de l'enregistrement.");
+    }
+}

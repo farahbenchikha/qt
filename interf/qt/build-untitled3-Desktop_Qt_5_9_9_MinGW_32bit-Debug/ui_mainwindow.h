@@ -187,6 +187,9 @@ public:
     QPushButton *pushButton_statistiqueenr;
     QPushButton *pushButton_supenr;
     QPushButton *pushButton_lecEnr;
+    QLabel *label_84;
+    QLabel *label_87;
+    QPushButton *pushButton_10;
     QWidget *tab_11;
     QLabel *label_79;
     QLabel *label_80;
@@ -1206,6 +1209,21 @@ public:
         pushButton_lecEnr = new QPushButton(tab_12);
         pushButton_lecEnr->setObjectName(QStringLiteral("pushButton_lecEnr"));
         pushButton_lecEnr->setGeometry(QRect(640, 80, 93, 28));
+        label_84 = new QLabel(tab_12);
+        label_84->setObjectName(QStringLiteral("label_84"));
+        label_84->setGeometry(QRect(60, 410, 171, 31));
+        label_84->setStyleSheet(QLatin1String("color:rgb(0, 0, 0);\n"
+"font: 16pt \"MS Shell Dlg 2\";\n"
+"background-color:rgb(255, 200, 200);"));
+        label_87 = new QLabel(tab_12);
+        label_87->setObjectName(QStringLiteral("label_87"));
+        label_87->setGeometry(QRect(250, 410, 151, 31));
+        label_87->setStyleSheet(QLatin1String("color:rgb(0, 0, 0);\n"
+"font: 16pt \"MS Shell Dlg 2\";\n"
+"background-color:rgb(200, 200, 255);"));
+        pushButton_10 = new QPushButton(tab_12);
+        pushButton_10->setObjectName(QStringLiteral("pushButton_10"));
+        pushButton_10->setGeometry(QRect(460, 420, 61, 16));
         tabWidget_enrVideo->addTab(tab_12, QString());
         tab_11 = new QWidget();
         tab_11->setObjectName(QStringLiteral("tab_11"));
@@ -2204,6 +2222,9 @@ public:
         pushButton_statistiqueenr->setText(QApplication::translate("MainWindow", "Statistiques ", Q_NULLPTR));
         pushButton_supenr->setText(QApplication::translate("MainWindow", "Supprimer", Q_NULLPTR));
         pushButton_lecEnr->setText(QApplication::translate("MainWindow", "Lecture Video", Q_NULLPTR));
+        label_84->setText(QApplication::translate("MainWindow", "    Emission", Q_NULLPTR));
+        label_87->setText(QApplication::translate("MainWindow", "   Publicit\303\251", Q_NULLPTR));
+        pushButton_10->setText(QApplication::translate("MainWindow", "refressh", Q_NULLPTR));
         tabWidget_enrVideo->setTabText(tabWidget_enrVideo->indexOf(tab_12), QApplication::translate("MainWindow", "Liste des enregistrements ", Q_NULLPTR));
         label_79->setText(QString());
         label_80->setText(QString());

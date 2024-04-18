@@ -16,6 +16,34 @@
 #include <QPrinter>
 #include<QPainter>
 #include<QtCharts>
+#include <QStyledItemDelegate>
+#include <QPainter>
+#include <QBrush>
+#include <QColor>
+
+#include <QFileInfo>
+
+class CustomDelegate : public QStyledItemDelegate {
+public:
+    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override {
+        QVariant file = index.sibling(index.row(), 3).data(Qt::DisplayRole);
+        QString absoluteFilePath = "C:/Users/farah/Downloads/2a11-cr-er-une-quipe-visiondesk_2a11-main/2a11-cr-er-une-quipe-visiondesk_2a11-main/interf/qt/build-untitled3-Desktop_Qt_5_9_9_MinGW_32bit-Debug/" + file.toString();
+
+        QFileInfo fileInfo(absoluteFilePath);
+        qint64 fileSize = fileInfo.size(); // Size of the file in bytes
+
+        if (fileSize > 7 * 1024 * 1024) {
+            painter->fillRect(option.rect, QColor(255, 200, 200)); // Red color
+        } else {
+                painter->fillRect(option.rect, QColor(200, 200, 255)); // Light blue color
+
+        }
+
+        QStyledItemDelegate::paint(painter, option, index);
+    }
+};
+
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -66,6 +94,8 @@ void MainWindow::showtab()
             ui->tableView_enr->setSelectionMode(QAbstractItemView::SingleSelection);
 
     ui->tableView_enr->setModel(proxyModel);
+    ui->tableView_enr->setItemDelegate(new CustomDelegate);
+
     // Clear the existing items in the combo box
        ui->comboBox_modifIdenr->clear();
 
@@ -74,6 +104,7 @@ void MainWindow::showtab()
            QModelIndex index = enr.afficher()->index(row, 0); // Assuming the ID is in the first column
            QVariant data = enr.afficher()->data(index, Qt::DisplayRole);
            ui->comboBox_modifIdenr->addItem(data.toString());
+
        }
 
 }
@@ -119,16 +150,16 @@ void MainWindow::on_pushButton_afficher_enr_clicked()
         model->setHeaderData(3, Qt::Horizontal, QObject::tr("Path"));
         model->setHeaderData(4, Qt::Horizontal, QObject::tr("Qualité"));
 
+
         QSortFilterProxyModel *proxyModel = new QSortFilterProxyModel(model);
                 proxyModel->setSourceModel(model);
 
-                // Enable sorting in the proxy model
                 proxyModel->setSortCaseSensitivity(Qt::CaseInsensitive); // Set case sensitivity for sorting
                 ui->tableView_enr->setSortingEnabled(true); // Enable sorting in the view
                 ui->tableView_enr->setSelectionMode(QAbstractItemView::SingleSelection);
+        ui->tableView_enr->setModel(proxyModel);
 
-        ui->tableView_enr->setModel(proxyModel);    } else {
-        // Afficher un message d'erreur si le modèle est invalide
+    } else {
         QMessageBox::critical(this, "Erreur", "Une erreur est survenue lors de la récupération des enregistrements.");
     }
 }
@@ -419,8 +450,26 @@ void MainWindow::on_pushButton_exportpdf_clicked()
 void MainWindow::on_pushButton_statistiqueenr_clicked()
 {
     int totalEnregistrements = enr.getTotalEnregistrements();
-    int nombreEmissions = enr.getNombreParType("emission");
-    int nombrePublicites = enr.getNombreParType("publicite");
+    int nombreEmissions = 0;
+    int nombrePublicites = 0;
+
+    for (int row = 0; row < enr.afficher()->rowCount(); ++row) {
+        QModelIndex index = enr.afficher()->index(row, 0);
+
+            QVariant file = index.sibling(index.row(), 3).data(Qt::DisplayRole);
+            QString absoluteFilePath = "C:/Users/farah/Downloads/2a11-cr-er-une-quipe-visiondesk_2a11-main/2a11-cr-er-une-quipe-visiondesk_2a11-main/interf/qt/build-untitled3-Desktop_Qt_5_9_9_MinGW_32bit-Debug/" + file.toString();
+
+            QFileInfo fileInfo(absoluteFilePath);
+            qint64 fileSize = fileInfo.size(); // Size of the file in bytes
+
+            if (fileSize > 7 * 1024 * 1024 ) {
+                nombreEmissions++;
+            }else{
+                nombrePublicites++;
+            }
+
+        }
+
 
     // Calcul des pourcentages
     qreal pourcentageEmissions = (qreal)nombreEmissions / totalEnregistrements * 100;
@@ -467,35 +516,26 @@ void MainWindow::on_pushButton_impEng_clicked()
         ui->lineEdit_cheminEnr->setText(newFilePath);
     }
 
-    /*   QMediaPlayer *player = new QMediaPlayer();
-    QVideoWidget *video =new QVideoWidget();
-    video->setGeometry(20,20,640,480);
-    player->setVideoOutput(video);
-    player->setMedia(QUrl(FileName));
-    video->show();
-    player->play();
-    */
 }
 
 void MainWindow::on_lineEdit_idrecheng_textChanged(const QString &arg1)
 {
-    QString filterText = arg1.trimmed(); // Get the text from the QLineEdit and remove any leading/trailing whitespace
+    QString filterText = arg1.trimmed();
 
-    // If the filter text is not empty, filter the data in the table view
-    if (!filterText.isEmpty()) {
-        // Créer une instance de la classe enregistrement
         enregistrement enreg;
+        //recherche
         QSqlQueryModel *filteredModel = enreg.filtrerParNom(arg1);
+        //tri
         QSortFilterProxyModel *proxyModel = new QSortFilterProxyModel(filteredModel);
-                proxyModel->setSourceModel(filteredModel);
+        proxyModel->setSourceModel(filteredModel);
+                proxyModel->setSortCaseSensitivity(Qt::CaseInsensitive);
+                ui->tableView_enr->setSortingEnabled(true);
 
-                // Enable sorting in the proxy model
-                proxyModel->setSortCaseSensitivity(Qt::CaseInsensitive); // Set case sensitivity for sorting
-                ui->tableView_enr->setSortingEnabled(true); // Enable sorting in the view
+                //Selection unique
                 ui->tableView_enr->setSelectionMode(QAbstractItemView::SingleSelection);
 
-        ui->tableView_enr->setModel(proxyModel);    } else {
-    }
+        ui->tableView_enr->setModel(proxyModel);
+
 }
 
 void MainWindow::on_pushButton_supenr_clicked()
@@ -590,7 +630,6 @@ void MainWindow::on_pushButton_lecEnr_clicked()
     foreach(const QModelIndex &index, selectedRows) {
         QVariant pathVariant = ui->tableView_enr->model()->data(ui->tableView_enr->model()->index(index.row(), 3));
         QString absoluteFilePath = "C:/Users/farah/Downloads/2a11-cr-er-une-quipe-visiondesk_2a11-main/2a11-cr-er-une-quipe-visiondesk_2a11-main/interf/qt/build-untitled3-Desktop_Qt_5_9_9_MinGW_32bit-Debug/" + pathVariant.toString();
-        qDebug() <<absoluteFilePath;
         QMediaPlayer *player = new QMediaPlayer();
             QVideoWidget *video =new QVideoWidget();
             video->setGeometry(20,20,640,480);
@@ -601,3 +640,5 @@ void MainWindow::on_pushButton_lecEnr_clicked()
 
     }
 }
+
+

@@ -72,6 +72,7 @@ QSqlQueryModel* enregistrement::afficher()
         model->setHeaderData(2, Qt::Horizontal, tr("ID Emission"));
         model->setHeaderData(3, Qt::Horizontal, tr("Path"));
         model->setHeaderData(4, Qt::Horizontal, tr("Qualité"));
+
         return model;
     } else {
         qDebug() << "Erreur lors de l'exécution de la requête :" << query.lastError().text();

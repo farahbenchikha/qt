@@ -186,6 +186,7 @@ public:
     QPushButton *pushButton_exportpdf;
     QPushButton *pushButton_statistiqueenr;
     QPushButton *pushButton_supenr;
+    QPushButton *pushButton_lecEnr;
     QWidget *tab_11;
     QLabel *label_79;
     QLabel *label_80;
@@ -1202,6 +1203,9 @@ public:
         pushButton_supenr = new QPushButton(tab_12);
         pushButton_supenr->setObjectName(QStringLiteral("pushButton_supenr"));
         pushButton_supenr->setGeometry(QRect(790, 80, 93, 28));
+        pushButton_lecEnr = new QPushButton(tab_12);
+        pushButton_lecEnr->setObjectName(QStringLiteral("pushButton_lecEnr"));
+        pushButton_lecEnr->setGeometry(QRect(640, 80, 93, 28));
         tabWidget_enrVideo->addTab(tab_12, QString());
         tab_11 = new QWidget();
         tab_11->setObjectName(QStringLiteral("tab_11"));
@@ -2038,7 +2042,7 @@ public:
         tabWidget->setCurrentIndex(2);
         tabWidget_2->setCurrentIndex(0);
         tabWidget_3->setCurrentIndex(1);
-        tabWidget_enrVideo->setCurrentIndex(2);
+        tabWidget_enrVideo->setCurrentIndex(0);
         tabWidget_7->setCurrentIndex(4);
         tabWidget_5->setCurrentIndex(1);
         tabWidget_6->setCurrentIndex(4);
@@ -2199,6 +2203,7 @@ public:
         pushButton_exportpdf->setText(QApplication::translate("MainWindow", "Export Pdf ", Q_NULLPTR));
         pushButton_statistiqueenr->setText(QApplication::translate("MainWindow", "Statistiques ", Q_NULLPTR));
         pushButton_supenr->setText(QApplication::translate("MainWindow", "Supprimer", Q_NULLPTR));
+        pushButton_lecEnr->setText(QApplication::translate("MainWindow", "Lecture Video", Q_NULLPTR));
         tabWidget_enrVideo->setTabText(tabWidget_enrVideo->indexOf(tab_12), QApplication::translate("MainWindow", "Liste des enregistrements ", Q_NULLPTR));
         label_79->setText(QString());
         label_80->setText(QString());

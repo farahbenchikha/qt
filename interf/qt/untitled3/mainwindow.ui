@@ -2349,7 +2349,7 @@ font: 75 12pt &quot;MS Shell Dlg 2&quot;;</string>
        </rect>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_12">
        <attribute name="title">
@@ -2445,6 +2445,19 @@ color:rgb(255, 255, 255)</string>
         </property>
         <property name="text">
          <string>Supprimer</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_lecEnr">
+        <property name="geometry">
+         <rect>
+          <x>640</x>
+          <y>80</y>
+          <width>93</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Lecture Video</string>
         </property>
        </widget>
       </widget>

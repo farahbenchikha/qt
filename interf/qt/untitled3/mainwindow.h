@@ -53,6 +53,8 @@ private slots:
 
     void on_pushButton_32_clicked();
 
+    void on_pushButton_lecEnr_clicked();
+
 private:
     Ui::MainWindow *ui;
       QString newFilePath;

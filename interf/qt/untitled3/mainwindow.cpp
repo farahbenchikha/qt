@@ -119,8 +119,6 @@ void MainWindow::on_pushButton_afficher_enr_clicked()
         model->setHeaderData(3, Qt::Horizontal, QObject::tr("Path"));
         model->setHeaderData(4, Qt::Horizontal, QObject::tr("Qualité"));
 
-
-
         QSortFilterProxyModel *proxyModel = new QSortFilterProxyModel(model);
                 proxyModel->setSourceModel(model);
 
@@ -332,7 +330,7 @@ void MainWindow::on_pushButton_exportpdf_clicked()
 
                                      // headers
 
-                                     out << "<thead><tr bgcolor=#f0f0f0> <th>Numero</th>";
+                                     out << "<thead><tr bgcolor=#f0f0f0>";
 
                                      for (int column = 0; column < columnCount; column++)
 
@@ -348,7 +346,7 @@ void MainWindow::on_pushButton_exportpdf_clicked()
 
                                      for (int row = 0; row < rowCount; row++) {
 
-                                         out << "<tr> <td bkcolor=0>" << row+1 <<"</td>";
+                                         out << "<tr>";
 
                                          for (int column = 0; column < columnCount; column++) {
 
@@ -417,6 +415,7 @@ void MainWindow::on_pushButton_exportpdf_clicked()
                              .arg(nombreEmissions).arg(nombrePublicites));
 }
 */
+
 void MainWindow::on_pushButton_statistiqueenr_clicked()
 {
     int totalEnregistrements = enr.getTotalEnregistrements();
@@ -455,12 +454,12 @@ void MainWindow::on_pushButton_statistiqueenr_clicked()
 void MainWindow::on_pushButton_impEng_clicked()
 {
     QString originalFilePath = QFileDialog::getOpenFileName(this, tr("Selectionner le fichier de la video"), "", tr("MP4 Files (*.MP4)"));
-    QString newDirectory = "/videos/";
+    QString newDirectory = "videos/";
 
     if (!originalFilePath.isEmpty()) {
         QFileInfo originalFileInfo(originalFilePath);
         QString newFileName = newDirectory + originalFileInfo.fileName();
-        if (QFile::copy(originalFilePath, '.'+newFileName)) {
+        if (QFile::copy(originalFilePath, "./"+newFileName)) {
             newFilePath = newFileName;
         } else {
             qDebug() << "Failed to copy file.";
@@ -501,29 +500,15 @@ void MainWindow::on_lineEdit_idrecheng_textChanged(const QString &arg1)
 
 void MainWindow::on_pushButton_supenr_clicked()
 {
-    // Get the selection model for the table view
     QItemSelectionModel *select = ui->tableView_enr->selectionModel();
-
-    // Retrieve the list of selected rows
     QModelIndexList selectedRows = select->selectedRows();
-
-    // Iterate through the selected rows
     foreach(const QModelIndex &index, selectedRows) {
-        // Assuming the ID is stored in the first column (column 0)
         QVariant idVariant = ui->tableView_enr->model()->data(ui->tableView_enr->model()->index(index.row(), 0));
         QVariant pathVariant = ui->tableView_enr->model()->data(ui->tableView_enr->model()->index(index.row(), 3));
-
-        // Convert the QVariant to the appropriate type (e.g., int)
         int id_enr = idVariant.toInt();
         QString path_enr = pathVariant.toString();
-
-        // Create an instance of your 'enregistrement' class
         enregistrement enr;
-
-        // Attempt to delete the record using the retrieved ID
         bool test = enr.supprimer(id_enr, path_enr);
-
-        // Display appropriate message based on deletion success or failure
         if (test) {
             QMessageBox::information(this, "Succès", "L'enregistrement a été supprimé avec succès.");
             ui->tableView_enr->setModel(enr.afficher());
@@ -565,12 +550,12 @@ void MainWindow::on_comboBox_modifIdenr_currentIndexChanged(const QString &arg1)
 void MainWindow::on_pushButton_impEng_3_clicked()
 {
     QString originalFilePath = QFileDialog::getOpenFileName(this, tr("Selectionner le fichier de la video"), "", tr("MP4 Files (*.MP4)"));
-    QString newDirectory = "/videos/";
+    QString newDirectory = "videos/";
 
     if (!originalFilePath.isEmpty()) {
         QFileInfo originalFileInfo(originalFilePath);
         QString newFileName = newDirectory + originalFileInfo.fileName();
-        if (QFile::copy(originalFilePath, '.'+newFileName)) {
+        if (QFile::copy(originalFilePath, "./"+newFileName)) {
             newFilePath = newFileName;
         } else {
             qDebug() << "Failed to copy file.";
@@ -595,5 +580,24 @@ void MainWindow::on_pushButton_32_clicked()
         ui->tableView_enr->setModel(enr.afficher());
     } else {
         QMessageBox::critical(this, "Erreur", "Une erreur est survenue lors de l'ajout de l'enregistrement.");
+    }
+}
+
+void MainWindow::on_pushButton_lecEnr_clicked()
+{
+    QItemSelectionModel *select = ui->tableView_enr->selectionModel();
+    QModelIndexList selectedRows = select->selectedRows();
+    foreach(const QModelIndex &index, selectedRows) {
+        QVariant pathVariant = ui->tableView_enr->model()->data(ui->tableView_enr->model()->index(index.row(), 3));
+        QString absoluteFilePath = "C:/Users/farah/Downloads/2a11-cr-er-une-quipe-visiondesk_2a11-main/2a11-cr-er-une-quipe-visiondesk_2a11-main/interf/qt/build-untitled3-Desktop_Qt_5_9_9_MinGW_32bit-Debug/" + pathVariant.toString();
+        qDebug() <<absoluteFilePath;
+        QMediaPlayer *player = new QMediaPlayer();
+            QVideoWidget *video =new QVideoWidget();
+            video->setGeometry(20,20,640,480);
+            player->setVideoOutput(video);
+            player->setMedia(QUrl(absoluteFilePath));
+            video->show();
+            player->play();
+
     }
 }

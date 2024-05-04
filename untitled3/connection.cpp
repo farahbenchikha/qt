@@ -3,6 +3,7 @@
 #include <QSqlError>
 #include <QSqlQuery>
 
+
 Connection::Connection()
 {
 
@@ -17,9 +18,14 @@ db.setPassword("farrouha");//inserer mot de passe de cet utilisateur
 
 if (db.open())
 test=true;
- return  test;
+
+
+
+
+
+    return  test;
 }
-void Connection::closeConnection()
+void Connection::closeconnect()
 {
     db.close();
 }

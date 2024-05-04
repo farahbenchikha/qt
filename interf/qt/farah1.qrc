@@ -1,8 +1,0 @@
-<RCC>
-    <qresource prefix="/new/prefix1">
-        <file>farah1.png</file>
-        <file>farah2.png</file>
-        <file>farah3.png</file>
-        <file>farah4.png</file>
-    </qresource>
-</RCC>
